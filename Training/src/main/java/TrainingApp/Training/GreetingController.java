@@ -24,7 +24,7 @@ public class GreetingController {
 	   
 	   @RequestMapping(method = RequestMethod.POST)
 	   public String submitForm(@ModelAttribute("monForm") MonFormulaire monFormulaire) {
-		   
+		   //TODO : traiter l'existence du login afind de savoir ou le rediriger
 		   return "OK";
 	   }
 }

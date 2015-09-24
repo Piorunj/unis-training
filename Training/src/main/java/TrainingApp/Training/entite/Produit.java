@@ -7,13 +7,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Utilisateur {
+public class Produit {
 	private Integer id;
-	
-	private String login;
-	
-	private String password;
-	
-	private String telephone;
-	
+	private String nom;
 }

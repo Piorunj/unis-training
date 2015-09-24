@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+  
+  <mapper namespace='TrainingApp.Training.mapper.VendeurMapper'>
+  
+  	<resultMap type="TrainingApp.Training.entite.Vendeur" id="VendeurResult">
+  		<id property="id" column="ven_id"/>
+  		<result property="nomEntreprise" column="ven_nom_entreprise"/>
+
+  		
+  		<association property="usrId" column="ven_usr_id" select="TrainingApp.Training.mapper.UtilisateurMapper.getUtilisateurById"/>
+  	</resultMap>
+  
+  
+  </mapper>

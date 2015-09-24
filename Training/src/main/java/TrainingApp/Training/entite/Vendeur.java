@@ -4,16 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
+@Setter
 @ToString
-public class Utilisateur {
+public class Vendeur {
 	private Integer id;
-	
-	private String login;
-	
-	private String password;
-	
-	private String telephone;
-	
+	private Integer usrId;
+	private String nomEntreprise;
+
 }

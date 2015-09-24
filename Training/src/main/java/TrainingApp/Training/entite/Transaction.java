@@ -1,5 +1,7 @@
 package TrainingApp.Training.entite;
 
+import java.time.LocalDate;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,13 +9,11 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Utilisateur {
+public class Transaction {
+
 	private Integer id;
-	
-	private String login;
-	
-	private String password;
-	
-	private String telephone;
+	private Integer acheteurId;
+	private Integer offreId;
+	private LocalDate date;
 	
 }

@@ -1,3 +1,7 @@
- server:
-   port: 8080
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost/trainingBdd
+    username: postgres
+    password: postgres
     

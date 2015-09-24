@@ -1,16 +1,17 @@
-package TrainingApp.Training;
+package TrainingApp.Training.entite;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
-public class MonFormulaire {
-
+public class Utilisateur {
+	private Integer id;
+	
 	private String login;
 	
 	private String password;
-
+	
 }

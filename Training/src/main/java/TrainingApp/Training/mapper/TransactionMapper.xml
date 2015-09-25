@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+  
+  <mapper namespace='trainingapp.training.mapper.TransactionMapper'>
+  
+  	<resultMap type="trainingapp.training.entite.Transaction" id="TransactionResult">
+  		<id property="id" column="tra_id"/>
+  		<result property="date" column="tra_date"/>
+		<result property="acheteurId" column="tra_ach_id"/>
+  		<association property="offre" column="tra_off_id" select="trainingapp.training.mapper.UtilisateurMapper.getOffreById"/>
+  	</resultMap>
+  
+  
+  </mapper>

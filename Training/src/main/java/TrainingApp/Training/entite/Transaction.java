@@ -1,19 +1,15 @@
-package TrainingApp.Training.entite;
+package trainingapp.training.entite;
 
 import java.time.LocalDate;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Setter
-@Getter
-@ToString
+@Data
 public class Transaction {
 
 	private Integer id;
 	private Integer acheteurId;
-	private Integer offreId;
+	private Offre offre;
 	private LocalDate date;
 	
 }

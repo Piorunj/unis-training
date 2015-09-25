@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="trainingapp.training.mapper.OffreMapper">
+	<resultMap type="trainingapp.training.entite.Offre" id="OffreResult">
+		<id property="id" column="off_id" />
+		<result property="quantite" column="off_quantite" />
+		<result property="unite" column="off_unite" />
+		<result property="prixUnite" column="off_prix_unite" />
+		<result property="dateCreation" column="off_date_creation" />
+		
+		<association property="produitId" column="off_prt_id" select="trainingapp.training.ProduitMapper"/>
+		<association property="vendeurId" column="off_ven_id" select="Trainingapp.training.ProduitMapper"/>
+	</resultMap>
+
+</mapper>

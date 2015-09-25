@@ -1,4 +1,4 @@
-package TrainingApp.Training.mapper;
+package trainingapp.training.mapper;
 
 public interface AcheteurMapper {
 	

@@ -1,4 +1,4 @@
-package TrainingApp.Training;
+package trainingapp.training;
 
 import javax.sql.DataSource;
 
@@ -17,12 +17,14 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@MapperScan(basePackages = "TrainingApp.Training.mapper")
+@MapperScan(basePackages = "trainingapp.training.mapper")
 @EnableAutoConfiguration
 public class AppConfig extends WebMvcConfigurerAdapter{
 	
 	
-    @Bean
+    private static final String TYPEHANDLER_PACKAGE = "trainingapp.training.typehandler";
+
+	@Bean
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/jsp/");
@@ -47,6 +49,8 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
+		
+		sessionFactory.setTypeHandlersPackage(TYPEHANDLER_PACKAGE);
 		return sessionFactory.getObject();
 	}
 

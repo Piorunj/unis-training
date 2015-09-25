@@ -1,5 +1,5 @@
 package trainingapp.training.mapper;
 
-public interface VendeurMapper {
+public interface TransactionMapper {
 
 }

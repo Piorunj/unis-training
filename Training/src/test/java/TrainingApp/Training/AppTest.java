@@ -1,4 +1,4 @@
-package TrainingApp.Training;
+package trainingapp.training;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

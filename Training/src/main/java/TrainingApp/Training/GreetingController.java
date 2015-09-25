@@ -1,7 +1,5 @@
-package TrainingApp.Training;
+package trainingapp.training;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,13 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import TrainingApp.Training.service.UtilisateurService;
+import trainingapp.training.service.UtilisateurService;
 
 @Controller
 @RequestMapping(value="/index")
 public class GreetingController {
 	
-	private final Logger logger = LoggerFactory.getLogger(GreetingController.class);
 	
 	@Autowired
 	private UtilisateurService utilisateurService;
@@ -31,8 +28,7 @@ public class GreetingController {
 	   
 	   @RequestMapping(method = RequestMethod.POST)
 	   public String submitForm(@ModelAttribute("monForm") MonFormulaire monFormulaire) {
-		   if(utilisateurService.isExist(monFormulaire.getLogin(), monFormulaire.getPassword())){ 
-			   
+		   if(utilisateurService.isExist(monFormulaire.getLogin(), monFormulaire.getPassword())){ 		   
 			   return "user";
 		   }
 		   return "errorLogin";

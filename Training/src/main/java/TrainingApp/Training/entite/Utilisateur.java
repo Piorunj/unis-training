@@ -1,4 +1,4 @@
-package TrainingApp.Training.entite;
+package trainingapp.training.entite;
 
 import lombok.Getter;
 import lombok.Setter;

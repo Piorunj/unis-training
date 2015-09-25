@@ -1,8 +1,8 @@
-package TrainingApp.Training.mapper;
+package trainingapp.training.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
-import TrainingApp.Training.entite.Utilisateur;
+import trainingapp.training.entite.Utilisateur;
 
 public interface UtilisateurMapper {
 	

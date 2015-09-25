@@ -8,8 +8,15 @@
   		<id property="id" column="tra_id"/>
   		<result property="date" column="tra_date"/>
 		<result property="acheteurId" column="tra_ach_id"/>
-  		<association property="offre" column="tra_off_id" select="trainingapp.training.mapper.UtilisateurMapper.getOffreById"/>
+  		<association property="offre" column="tra_off_id" select="trainingapp.training.mapper.OffreMapper.getOffreById"/>
   	</resultMap>
+  	
+  	
+  	<select id="getAllTransactionByAcheteurId" parameterType="java.lang.Integer" resultMap="TransactionResult">
+  		SELECT *
+  		FROM TRANSACTION
+  		WHERE tra_ach_id=#{acheteurId}
+  	</select>
   
   
   </mapper>

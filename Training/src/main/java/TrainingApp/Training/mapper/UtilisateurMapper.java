@@ -6,8 +6,8 @@ import trainingapp.training.entite.Utilisateur;
 
 public interface UtilisateurMapper {
 	
-	public Utilisateur getUtilisateurById(int id);
+	public Utilisateur getUtilisateurById(@Param("id") int id);
 	
-	public boolean isExist(@Param("login") String login, @Param("password") String password);
+	public Integer isExist(@Param("login") String login, @Param("password") String password);
 
 }

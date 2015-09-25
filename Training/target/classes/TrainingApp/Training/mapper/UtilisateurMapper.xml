@@ -15,12 +15,13 @@
 		resultType="trainingapp.training.entite.Utilisateur">
 		SELECT usr_id, usr_login, usr_password
 		FROM UTILISATEUR
-		WHERE usr_id = #{id}
+		WHERE usr_id=#{id}
 	</select>
 
-	<select id="isExist" parameterType="String" resultType="java.lang.Boolean">
-		SELECT usr_login=#{login} AND usr_password=#{password}
+	<select id="isExist" parameterType="String" resultType="java.lang.Integer">
+		SELECT usr_id
 		FROM UTILISATEUR
+		WHERE usr_login=#{login} AND usr_password=#{password}
 	</select>
 
 

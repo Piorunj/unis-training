@@ -1,9 +1,10 @@
-package trainingapp.training.service;
+package trainingapp.training.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import trainingapp.training.mapper.UtilisateurMapper;
+import trainingapp.training.service.UtilisateurService;
 
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService{
@@ -12,7 +13,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	private UtilisateurMapper utilisateurMapper;
 
 	@Override
-	public boolean isExist(String login, String password) {
+	public Integer isExist(String login, String password) {
 		return utilisateurMapper.isExist(login, password);
 	}
 

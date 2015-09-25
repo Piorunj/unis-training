@@ -10,8 +10,14 @@
 		<result property="prixUnite" column="off_prix_unite" />
 		<result property="dateCreation" column="off_date_creation" />
 		
-		<association property="produitId" column="off_prt_id" select="trainingapp.training.ProduitMapper"/>
-		<association property="vendeurId" column="off_ven_id" select="Trainingapp.training.ProduitMapper"/>
+<!-- 		<association property="produitId" column="off_prt_id" select="trainingapp.training.ProduitMapper"/> -->
+<!-- 		<association property="vendeurId" column="off_ven_id" select="Trainingapp.training.ProduitMapper"/> -->
 	</resultMap>
 
+
+	<select id="getOffreById" parameterType="int" resultMap="OffreResult">
+		SELECT off_quantite, off_unite, off_prix_unite, off_date_creation
+		FROM OFFRE
+		WHERE off_id=#{id}
+	</select>
 </mapper>

@@ -10,4 +10,4 @@ CREATE TABLE VENDEUR (
 -- //@UNDO
 -- SQL to undo the change goes here.
 DROP TABLE VENDEUR;
-
+DROP SEQUENCE VENDEUR_VEN_ID_SEQ;

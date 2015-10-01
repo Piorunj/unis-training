@@ -9,4 +9,4 @@ CREATE TABLE PRODUIT (
 -- //@UNDO
 -- SQL to undo the change goes here.
 DROP TABLE PRODUIT;
-
+DROP SEQUENCE PRODUIT_PRT_ID_SEQ

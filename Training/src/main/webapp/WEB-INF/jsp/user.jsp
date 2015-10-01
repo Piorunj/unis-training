@@ -9,9 +9,20 @@
 <title>Utilisateur connecte !</title>
 </head>
 <body>
-	<h1>Utilisateur connecté !</h1>
+	<div id=bandeau>
+		<h1>Utilisateur connecté !</h1>
+	</div>
+	<!-- <div id="menu">
+		<ul>
+			<li>
+				<FORM ACTION="errorLogin">
+					<INPUT TYPE="SUBMIT" VALUE="Nouvelle transaction">
+				</FORM>
+			</li>
+		</ul>
+	</div> -->
 	<c:forEach items="${transactionList}" var="item">
-    ${item}<br>
+   		${item}<br>
 	</c:forEach>
 </body>
 </html>

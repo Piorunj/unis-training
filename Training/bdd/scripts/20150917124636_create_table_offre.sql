@@ -14,4 +14,4 @@ CREATE TABLE OFFRE (
 -- //@UNDO
 -- SQL to undo the change goes here.
 DROP TABLE OFFRE;
-
+DROP SEQUENCE OFFRE_OFF_ID_SEQ;

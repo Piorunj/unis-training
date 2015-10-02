@@ -5,15 +5,17 @@
 <mapper namespace="trainingapp.training.mapper.OffreMapper">
 	<resultMap type="trainingapp.training.entite.Offre" id="OffreResult">
 		<id property="id" column="off_id" />
-		<result property="vendeurId" column="off_ven_id"/>
 		<result property="quantite" column="off_quantite" />
-		<result property="produitId" column="off_prt_id"/>
 		<result property="unite" column="off_unite" />
 		<result property="prixUnite" column="off_prix_unite" />
 		<result property="dateCreation" column="off_date_creation" />
 		
-<!-- 		<association property="produitId" column="off_prt_id" select="trainingapp.training.ProduitMapper"/> -->
-<!-- 		<association property="vendeurId" column="off_ven_id" select="Trainingapp.training.ProduitMapper"/> -->
+		<result property="produit.id" column="prt_id" />
+		<result property="produit.name" column="prt_name" />
+		
+		<result property="vendeur.id" column="ven_id"/>
+		<result property="vendeur.usrId" column="ven_usr_id"/>
+		<result property="vendeur.nomEntreprise" column="ven_nom_entreprise"/>
 	</resultMap>
 
 
@@ -21,5 +23,20 @@
 		SELECT *
 		FROM OFFRE
 		WHERE off_id=#{id}
+	</select>
+
+
+	<select id="getOffreParCritere" resultMap="OffreResult">
+		SELECT *
+		FROM OFFRE 
+		INNER JOIN PRODUIT ON (OFFRE.off_prt_id = PRODUIT.prt_id)
+		INNER JOIN VENDEUR ON (OFFRE.off_ven_id = VENDEUR.ven_id)
+		<where>
+			<if test="produit != null">PRODUIT.prt_nom = #{produit}</if>
+			<if test="prixMin != null">AND OFFRE.off_prix_unite >= #{prixMin}</if>
+			<if test="prixMax != null">AND #{prixMax} >= OFFRE.off_prix_unite</if>
+			<if test="quantiteMin != null">AND OFFRE.off_quantite >= #{quantiteMin}</if>
+			<if test="quantiteMax != null">AND #{quantiteMax} >= OFFRE.off_quantite</if>
+		</where>
 	</select>
 </mapper>

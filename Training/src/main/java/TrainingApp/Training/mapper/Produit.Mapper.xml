@@ -9,4 +9,9 @@
 		<result property='nom' column='prt_nom'/>
 	</resultMap>
 	
+	
+	<select id="getProduitById" resultType="String" parameterType="integer">
+		SELECT prt_nom
+		WHERE prt_id = #{id}
+	</select>
 </mapper>

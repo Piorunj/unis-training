@@ -11,9 +11,9 @@
 		<result property="telephone" column="usr_telephone" />
 	</resultMap>
 
-	<select id="getUtilisateurById" parameterType="int"
-		resultType="trainingapp.training.entite.Utilisateur">
-		SELECT usr_id, usr_login, usr_password
+	<select id="getUtilisateurById" parameterType="Integer"
+		resultMap="UtilisateurResult">
+		SELECT *
 		FROM UTILISATEUR
 		WHERE usr_id=#{id}
 	</select>

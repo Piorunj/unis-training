@@ -11,8 +11,8 @@ import lombok.ToString;
 @ToString
 public class Offre {
 	private Integer id;
-	private Integer produitId;
-	private Integer vendeurId;
+	private Produit produit;
+	private Vendeur vendeur;
 	private Integer quantite;
 	private String unite;
 	private Integer prixUnite;

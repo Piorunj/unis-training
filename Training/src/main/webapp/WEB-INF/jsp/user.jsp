@@ -12,15 +12,15 @@
 	<div id=bandeau>
 		<h1>Utilisateur connecté !</h1>
 	</div>
-	<!-- <div id="menu">
+	<div id="menu">
 		<ul>
 			<li>
-				<FORM ACTION="errorLogin">
+				<FORM ACTION="offre">
 					<INPUT TYPE="SUBMIT" VALUE="Nouvelle transaction">
 				</FORM>
 			</li>
 		</ul>
-	</div> -->
+	</div>
 	<c:forEach items="${transactionList}" var="item">
    		${item}<br>
 	</c:forEach>

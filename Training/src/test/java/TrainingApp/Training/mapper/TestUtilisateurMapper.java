@@ -1,7 +1,5 @@
 package trainingapp.training.mapper;
 
-import static org.junit.Assert.*;
-
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import trainingapp.training.entite.Utilisateur;
 public class TestUtilisateurMapper extends AbstractTrainingTest{
 
 	@Autowired
-	UtilisateurMapper utilisateurMapper;
+	private UtilisateurMapper utilisateurMapper;
 
 	@Test
 	public void testGetUtilisateurByIdSuccess() throws Exception{

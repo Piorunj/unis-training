@@ -10,8 +10,9 @@
 	</resultMap>
 	
 	
-	<select id="getProduitById" resultType="String" parameterType="integer">
-		SELECT prt_nom
+	<select id="getProduitById" resultMap="ProduitResult" parameterType="Integer">
+		SELECT *
+		FROM PRODUIT
 		WHERE prt_id = #{id}
 	</select>
 </mapper>

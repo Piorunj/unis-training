@@ -10,16 +10,20 @@
 		<result property="prixUnite" column="off_prix_unite" />
 		<result property="dateCreation" column="off_date_creation" />
 		
-		<result property="produit.id" column="prt_id" />
-		<result property="produit.name" column="prt_name" />
 		
-		<result property="vendeur.id" column="ven_id"/>
+<!-- 		<result property="produit.id" column="prt_id" />
+		<result property="produit.name" column="prt_name" /> -->
+		
+	<!-- 	<result property="vendeur.id" column="ven_id"/>
 		<result property="vendeur.usrId" column="ven_usr_id"/>
-		<result property="vendeur.nomEntreprise" column="ven_nom_entreprise"/>
+		<result property="vendeur.nomEntreprise" column="ven_nom_entreprise"/> -->
+		
+		<association property="produit" column="off_prt_id" select="trainingapp.training.mapper.ProduitMapper.getProduitById" />		
+		<association property="vendeur" column="off_ven_id" select="trainingapp.training.mapper.VendeurMapper.getVendeurById"/>
 	</resultMap>
 
 
-	<select id="getOffreById" parameterType="int" resultMap="OffreResult">
+	<select id="getOffreById" parameterType="Integer" resultMap="OffreResult">
 		SELECT *
 		FROM OFFRE
 		WHERE off_id=#{id}
@@ -32,7 +36,7 @@
 		INNER JOIN PRODUIT ON (OFFRE.off_prt_id = PRODUIT.prt_id)
 		INNER JOIN VENDEUR ON (OFFRE.off_ven_id = VENDEUR.ven_id)
 		<where>
-			<if test="produit != null">PRODUIT.prt_nom = #{produit}</if>
+			<if test="produit != null">PRODUIT.prt_nom LIKE '%${produit}%' </if>
 			<if test="prixMin != null">AND OFFRE.off_prix_unite >= #{prixMin}</if>
 			<if test="prixMax != null">AND #{prixMax} >= OFFRE.off_prix_unite</if>
 			<if test="quantiteMin != null">AND OFFRE.off_quantite >= #{quantiteMin}</if>

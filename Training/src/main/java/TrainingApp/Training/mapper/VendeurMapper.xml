@@ -7,10 +7,17 @@
   	<resultMap type="trainingapp.training.entite.Vendeur" id="VendeurResult">
   		<id property="id" column="ven_id"/>
   		<result property="nomEntreprise" column="ven_nom_entreprise"/>
+  		<result property="usrId" column="ven_usr_id"/>
 
   		
-  		<association property="usrId" column="ven_usr_id" select="trainingapp.training.mapper.UtilisateurMapper.getUtilisateurById"/>
+<!--   		<association property="usrId" column="ven_usr_id" select="trainingapp.training.mapper.UtilisateurMapper.getUtilisateurById"/> -->
   	</resultMap>
+  	
+  	<select id="getVendeurById" resultMap="VendeurResult" parameterType="Integer">
+  		SELECT *
+  		FROM VENDEUR
+  		WHERE ven_id = #{id}
+  	</select>
   
   
   </mapper>

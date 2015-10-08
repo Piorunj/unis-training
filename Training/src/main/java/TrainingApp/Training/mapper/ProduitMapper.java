@@ -1,6 +1,8 @@
 package trainingapp.training.mapper;
 
+import trainingapp.training.entite.Produit;
+
 public interface ProduitMapper {
-	public String getProduitById(Integer id);
+	public Produit getProduitById(Integer id);
 
 }

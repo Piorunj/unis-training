@@ -36,6 +36,8 @@ public abstract class AbstractTrainingTest {
 	private DataSource dataSource;
 	
 	private static Boolean hasBeenReset = Boolean.FALSE;
+	
+	protected Integer NB_TRANSACTION = 2;
 
 	@Before
 	public void setUp() {

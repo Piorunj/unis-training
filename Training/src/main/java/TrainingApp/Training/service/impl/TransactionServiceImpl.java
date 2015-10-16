@@ -19,6 +19,15 @@ public class TransactionServiceImpl implements TransactionService{
 	public List<Transaction> getAllTransactionByAcheteurId(Integer acheteurId) {
 		return transactionMapper.getAllTransactionByAcheteurId(acheteurId);
 	}
-	
+
+	@Override
+	public List<Transaction> getAllTransaction() {
+		return transactionMapper.getAllTransaction();
+	}
+
+	@Override
+	public Integer addTransaction(Integer idOffre, Integer idAcheteur) {
+		return transactionMapper.addTransaction(idOffre, idAcheteur);
+	}
 	
 }

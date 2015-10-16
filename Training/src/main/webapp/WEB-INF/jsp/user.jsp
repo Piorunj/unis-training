@@ -9,20 +9,60 @@
 <title>Utilisateur connecte !</title>
 </head>
 <body>
+
 	<div id=bandeau>
 		<h1>Utilisateur connecté !</h1>
 	</div>
-	<div id="menu">
-		<ul>
-			<li>
-				<FORM ACTION="offre">
-					<INPUT TYPE="SUBMIT" VALUE="Nouvelle transaction">
-				</FORM>
-			</li>
-		</ul>
-	</div>
-	<c:forEach items="${transactionList}" var="item">
-   		${item}<br>
-	</c:forEach>
+	<p>
+		<a id=newTransaction class="btn default blue-stripe">Nouvelle
+			transaction </a>
+	<table
+		class="table table-striped table-bordered table-advance table-hover">
+		<thead>
+			<tr>
+				<th>Transaction ID</th>
+				<th>Offre</th>
+				<th>Vendeur</th>
+				<th>Quantité</th>
+				<th>Unité</th>
+				<th>Prix unité</th>
+				<th>Date création offre</th>
+				<th>Date transaction</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${transactionList}" var="item">
+				<tr>
+					<td>
+  			 			${item.id}<br>
+					</td>
+					<td>
+  			 			${item.offre.id}<br>
+					</td>
+					<td>
+  			 			${item.offre.vendeur.nomEntreprise}<br>
+					</td>
+					<td>
+  			 			${item.offre.quantite}<br>
+					</td>
+					<td>
+  			 			${item.offre.unite}<br>
+					</td>
+					<td>
+  			 			${item.offre.prixUnite}<br>
+					</td>
+					<td>
+  			 			${item.offre.dateCreation}<br>
+					</td>
+					<td>
+  			 			${item.date}<br>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	
+	<script src="../../ressources/js/user.js" type="text/javascript"></script>
+
 </body>
 </html>

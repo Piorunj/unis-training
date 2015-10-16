@@ -4,46 +4,82 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 	<h1>Recherche d'offre</h1>
 
 
-	<form:form id="formRechercheOffre" action="/offre" method="GET"
+	<form:form id="formRechercheOffre"
 		modelAttribute="formulaireRechercheOffre">
-
-		<table>
-			<tr>
-				<td>Produit:</td>
-				<td><form:input path="produit" /></td>
-			</tr>
-			<tr>
-				<td>Quantité min:</td>
-				<td><form:input path="qtMin" /></td>
-				<td>Quantité max:</td>
-				<td><form:input path="qtMax" /></td>
-			</tr>
-			<tr>
-				<td>Prix min:</td>
-				<td><form:input path="prixMin" /></td>
-				<td>Prix max:</td>
-				<td><form:input path="prixMax" /></td>
-			</tr>
-			<tr>
-				<td colspan='2'><input name="submit" type="submit"
-					value="submit" /></td>
-			</tr>
-		</table>
+		<div class="col-md-8">
+			<div class="booking-search">
+				<div class="row form-group">
+					<div class="col-md-6">
+						<label class="control-label">Produit: </label>
+						<form:input path="produit" class="form-control" type="text" />
+					</div>
+					<div class="col-md-6">
+						<label class="control-label">Quantité min: </label>
+						<form:input path="qtMin" class="form-control" type="text" />
+					</div>
+					<div class="col-md-6">
+						<label class="control-label">Quantité max: </label>
+						<form:input path="qtMax" class="form-control" type="text" />
+					</div>
+					<div class="col-md-6">
+						<label class="control-label">Prix min: </label>
+						<form:input path="prixMin" class="form-control" type="text" />
+					</div>
+					<div class="col-md-6">
+						<label class="control-label">Prix max: </label>
+						<form:input path="prixMax" class="form-control" type="text" />
+					</div>
+					<div class="col-md-6">
+						<button id=searchButton class="btn blue btn-block margin-top-20">
+							SEARCH <i class="m-icon-swapright m-icon-white"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</form:form>
 
+
 	<c:if test="${not empty offres}">
-		<c:forEach items="${offres}" var="item">
-			${item}<br>
-		</c:forEach>
+		<table
+			class="table table-striped table-bordered table-advance table-hover">
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Vendeur</th>
+					<th>Quantité</th>
+					<th>Unité</th>
+					<th>Prix unité</th>
+					<th>Date création</th>
+					<th>Réserver</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${offres}" var="item">
+					<tr>
+						<td>${item.produit.nom}<br>
+						</td>
+						<td>${item.vendeur.nomEntreprise}<br>
+						</td>
+						<td>${item.quantite}<br>
+						</td>
+						<td>${item.unite}<br>
+						</td>
+						<td>${item.prixUnite}<br>
+						</td>
+						<td>${item.dateCreation}<br>
+						</td>
+						<td><a name="buyButton" class="btn btn-circle default red-stripe" data-id-offre="${item.id}"> Acheter </a><br></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
 	</c:if>
-</body>
-</html>
+	
+	<script src="../../ressources/js/offre.js" type="text/javascript"></script>
+	
+

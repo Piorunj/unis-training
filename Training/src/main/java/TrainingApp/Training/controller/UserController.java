@@ -30,12 +30,13 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView submitForm(@RequestParam("user") String user, @RequestParam("password") String password) {
 		Integer utilisateurId = utilisateurService.isExist(user, password);
-		Utilisateur u = utilisateurService.getUtilisateurById(utilisateurId);
-		List<Transaction> transactionList;
 		mav = new ModelAndView();
 		if(utilisateurId != null){
+			Utilisateur u = utilisateurService.getUtilisateurById(utilisateurId);
+			List<Transaction> transactionList;
 			transactionList = transactionService.getAllTransactionByAcheteurId(utilisateurId); 
 			mav.addObject("transactionList", transactionList);
+			mav.addObject("usrId", utilisateurId);
 			mav.setViewName("user");
 		}else{
 			mav.setViewName("login");

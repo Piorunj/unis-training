@@ -17,6 +17,15 @@
   		FROM TRANSACTION
   		WHERE tra_ach_id=#{acheteurId}
   	</select>
-  
+
+	<select id="getAllTransaction" resultMap="TransactionResult">
+		SELECT *
+		FROM TRANSACTION
+	</select> 
+	
+	<insert id="addTransaction">
+		insert into TRANSACTION (tra_off_id, tra_ach_id, tra_date)
+		values (#{idOffre}, #{idAcheteur}, CURRENT_DATE)
+	</insert>
   
   </mapper>

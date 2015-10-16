@@ -41,6 +41,10 @@
 			<if test="prixMax != null">AND #{prixMax} >= OFFRE.off_prix_unite</if>
 			<if test="quantiteMin != null">AND OFFRE.off_quantite >= #{quantiteMin}</if>
 			<if test="quantiteMax != null">AND #{quantiteMax} >= OFFRE.off_quantite</if>
+			AND off_id NOT IN (
+				SELECT off_id
+				FROM OFFRE INNER JOIN TRANSACTION ON (OFFRE.off_id = TRANSACTION.tra_off_id) 
+			)
 		</where>
 	</select>
 </mapper>

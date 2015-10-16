@@ -45,7 +45,7 @@ public class TestUtilisateurMapper extends AbstractTrainingTest{
 	@Test
 	public void testIsExistFail() throws Exception {
 		Assertions.assertThat(utilisateurMapper.isExist(null, null)).isNull();
-		Assertions.assertThat(utilisateurMapper.isExist("", "")).isNull();;
+		Assertions.assertThat(utilisateurMapper.isExist("", "")).isNull();
 	}
 
 }

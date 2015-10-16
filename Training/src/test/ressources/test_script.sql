@@ -24,28 +24,34 @@ ALTER SEQUENCE transaction_tra_id_seq RESTART WITH 1;
 INSERT INTO UTILISATEUR (usr_login, usr_password, usr_telephone) VALUES
 
 ('user1', 'pass', '0600000000'), --ID 1
-('user2', 'pass', '0666666666'); --ID 2
+('user2', 'pass', '0666666666'), --ID 2
+('user3', 'pass', '0777777777'), --ID 3
+('ach2', 'pass', '0700000000'); --ID 4
 
 -- ---------------------------
 -- Table UTILISATEUR
 -- ---------------------------
 INSERT INTO ACHETEUR (ach_usr_id, ach_prenom, ach_nom, ach_date_naissance) VALUES
 
-(2, 'boby', 'bob', '1700-03-26'); --ID 1
+(2, 'boby', 'bob', '1700-03-26'), --ID 1
+(3, 'achaBoy', 'achaByName', '1950-05-06');  --ID
+
 
 -- ---------------------------
 -- Table VENDEUR
 -- ---------------------------
 INSERT INTO VENDEUR (ven_usr_id, ven_nom_entreprise) VALUES
 
-(1, 'monEntreprise'); --ID 1
+(1, 'monEntreprise'), --ID 1
+(4, 'meilleurEntreprise'); --ID 2
 
 -- ---------------------------
 -- Table PRODUIT
 -- ---------------------------
 INSERT INTO PRODUIT (prt_nom) VALUES
 
-('beta product'); --ID 1
+('beta product'), --ID 1
+('new product');  --ID 2
 
 -- ---------------------------
 -- Table OFFRE
@@ -53,11 +59,12 @@ INSERT INTO PRODUIT (prt_nom) VALUES
 INSERT INTO OFFRE (off_prt_id, off_ven_id, off_quantite, off_unite, off_prix_unite, off_date_creation) VALUES
 
 (1, 1, 1, 'kg', 1, '1993-03-26'), --ID 1
-(1, 1, 5, 'kg', 5, '1994-03-26'); --ID 2
+(1, 1, 5, 'kg', 5, '1994-03-26'), --ID 2
+(2, 2, 10, 'L', 3, '1994-04-22'); --ID 3
 
 -- ---------------------------
 -- Table OFFRE
 -- ---------------------------
 INSERT INTO TRANSACTION (tra_ach_id, tra_off_id, tra_date) VALUES
-
-(1, 1, '1993-04-26'); --ID 1
+(1, 1, '1993-04-26'), --ID 1
+(2, 3, '1994-04-23'); --ID 2

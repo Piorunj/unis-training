@@ -18,6 +18,4 @@ public class LoginController {
 		ModelAndView model = new ModelAndView("login");	
 		return model;
 	}
-	
-
 }

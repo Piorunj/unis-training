@@ -2,12 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <html>
-
-<h1>Spring Security Custom Login Form</h1>
-
 <div id="login-box">
-
-	<h2>Login with Username and Password</h2>
 
 	<c:if test="${not empty error}">
 		<div class="error">${error}</div>
@@ -24,26 +19,28 @@
 		</form:form>
 	</section> --%>
 
-	<form name='loginForm'
-		 action="/user" method='POST'>
+	<div class="menu-toggler sidebar-toggler important"></div>
 
-		<table>
-			<tr>
-				<td>User:</td>
-				<td><input type='text' name='user' value=''></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type='password' name='password' /></td>
-			</tr>
-			<tr>
-				<td colspan='2'><input name="submit" type="submit"
-					value="submit" /></td>
-			</tr>
-		</table>
+	<div class="content important">
+		<form id=envoieLogin name='loginForm' class='login-form' method='POST'>
 
-	</form>
+			<h3 class="form-title">Login to your account</h3>
+			User:
+			<div class="input-icon important">
+				<input class="form-control placeholder-no-fix" type='text' name='user' value=''>
+
+			Password: <input class="form-control" type='password' name='password' />
+			 <input	id=envoieLogin name="submit" type="submit" value="submit" />
+						</div>
+		</form>
+	</div>
 
 </div>
 
+<div style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 728px; width: 1920px; z-index: -999999; position: fixed;" class="backstretch important"><img src="../../assets/admin/pages/media/bg/1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: medium none; width: 1920px; height: 1440.51px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -356.255px;"></div>
+
+
+<script src="../../assets/global/plugins/jquery-2.1.4.min.js"
+	type="text/javascript"></script>
+<script src="../../ressources/js/login.js" type="text/javascript"></script>
 </html>

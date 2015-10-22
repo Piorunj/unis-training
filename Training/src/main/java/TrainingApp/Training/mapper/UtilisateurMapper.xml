@@ -23,6 +23,16 @@
 		FROM UTILISATEUR
 		WHERE usr_login=#{login} AND usr_password=#{password}
 	</select>
+	
+	<select id="getUtilisateurAcheteurByLogin" parameterType="String" resultMap="UtilisateurResult">
+		SELECT *
+		FROM UTILISATEUR INNER JOIN ACHETEUR ON (ACHETEUR.ach_usr_id = UTILISATEUR.usr_id)
+		WHERE usr_login=#{login}
+	</select>
 
-
+	<select id="getUtilisateurVendeurByLogin" parameterType="String" resultMap="UtilisateurResult">
+		SELECT *
+		FROM UTILISATEUR INNER JOIN VENDEUR ON (VENDEUR.ven_usr_id = UTILISATEUR.usr_id)
+		WHERE usr_login=#{login}
+	</select>
 </mapper>

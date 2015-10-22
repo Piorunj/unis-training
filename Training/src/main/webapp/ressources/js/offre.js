@@ -20,8 +20,8 @@ function achatOffre(e){
 	e.preventDefault();
 	$.ajax({
 		type: "GET",
-		url: "/offre"+$(this).attr("data-id-offre"),
-		data : {done : true},
+		url: "/offre/"+$(this).attr("data-id-offre"),
+//		data : {done : true},
 		success : function(resp){
 			$('body').html(resp);
 			toastr.options = {

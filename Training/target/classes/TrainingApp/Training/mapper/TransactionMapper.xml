@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
-  
-  <mapper namespace='trainingapp.training.mapper.TransactionMapper'>
-  
-  	<resultMap type="trainingapp.training.entite.Transaction" id="TransactionResult">
-  		<id property="id" column="tra_id"/>
-  		<result property="date" column="tra_date"/>
-		<result property="acheteurId" column="tra_ach_id"/>
-  		<association property="offre" column="tra_off_id" select="trainingapp.training.mapper.OffreMapper.getOffreById"/>
-  	</resultMap>
-  	
-  	
-  	<select id="getAllTransactionByAcheteurId" parameterType="java.lang.Integer" resultMap="TransactionResult">
-  		SELECT *
-  		FROM TRANSACTION
-  		WHERE tra_ach_id=#{acheteurId}
-  	</select>
+
+<mapper namespace='trainingapp.training.mapper.TransactionMapper'>
+
+	<resultMap type="trainingapp.training.entite.Transaction" id="TransactionResult">
+		<id property="id" column="tra_id" />
+		<result property="date" column="tra_date" />
+		<result property="acheteurId" column="tra_ach_id" />
+		<association property="offre" column="tra_off_id"
+			select="trainingapp.training.mapper.OffreMapper.getOffreById" />
+	</resultMap>
+
+
+	<select id="getAllTransactionByAcheteurId" parameterType="java.lang.Integer"
+		resultMap="TransactionResult">
+		SELECT *
+		FROM TRANSACTION
+		WHERE tra_ach_id=#{acheteurId}
+	</select>
+
+	<select id="getAllTransactionByVendeurId" parameterType="java.lang.Integer"
+		resultMap="TransactionResult">
+		SELECT *
+		FROM TRANSACTION INNER JOIN OFFRE ON (TRANSACTION.tra_off_id = OFFRE.off_id)
+		WHERE off_ven_id=#{vendeurId}
+	</select>
 
 	<select id="getAllTransaction" resultMap="TransactionResult">
 		SELECT *
-		FROM TRANSACTION
-	</select> 
-	
+		FROM
+		TRANSACTION
+	</select>
+
 	<insert id="addTransaction">
-		insert into TRANSACTION (tra_off_id, tra_ach_id, tra_date)
+		insert into TRANSACTION (tra_off_id, tra_ach_id,
+		tra_date)
 		values (#{idOffre}, #{idAcheteur}, CURRENT_DATE)
 	</insert>
-  
-  </mapper>
+
+</mapper>

@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import trainingapp.training.entite.Acheteur;
 import trainingapp.training.entite.Offre;
 import trainingapp.training.entite.Produit;
 import trainingapp.training.entite.Transaction;
@@ -110,6 +111,24 @@ public abstract class AbstractTrainingTest {
 		transaction.setOffre(offre);
 		
 		return transaction;
+	}
+	
+	protected Acheteur createAcheteur(){
+		Acheteur acheteur = new Acheteur();
+		Utilisateur utilisateur = createUser();
+		
+		Integer id = 1;
+		String prenom = "boby";
+		String nom ="bob";
+		LocalDate date = LocalDate.of(1700, 03, 26);
+		
+		acheteur.setId(id);
+		acheteur.setPrenom(prenom);
+		acheteur.setNom(nom);
+		acheteur.setDateNaissance(date);
+		acheteur.setUsrId(utilisateur.getId());
+		
+		return acheteur;
 	}
 
 }

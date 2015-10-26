@@ -18,6 +18,12 @@
   		FROM VENDEUR
   		WHERE ven_id = #{id}
   	</select>
+  	
+  	<select id="getVendeurByUtilisateurLogin" resultMap="VendeurResult">
+  		SELECT *
+  		FROM VENDEUR INNER JOIN UTILISATEUR ON (VENDEUR.ven_usr_id = UTILISATEUR.usr_id)
+  		WHERE usr_login=#{login}
+  	</select>
   
   
   </mapper>

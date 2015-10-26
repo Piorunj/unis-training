@@ -13,4 +13,5 @@ public interface UtilisateurService extends UserDetailsService{
 	Integer isExist(String login, String password);
 	UserDetails loadUserByUsername(String login);
 	Utilisateur getUtilisateurAcheteurByLogin(String login);
+	Utilisateur getUtilisateurVendeurByLogin(String login);
 }

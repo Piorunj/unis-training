@@ -11,6 +11,7 @@
 		<result property="telephone" column="usr_telephone" />
 	</resultMap>
 
+
 	<select id="getUtilisateurById" parameterType="Integer"
 		resultMap="UtilisateurResult">
 		SELECT *
@@ -18,21 +19,29 @@
 		WHERE usr_id=#{id}
 	</select>
 
+
+
 	<select id="isExist" parameterType="String" resultType="java.lang.Integer">
-		SELECT usr_id
+		SELECT
+		usr_id
 		FROM UTILISATEUR
-		WHERE usr_login=#{login} AND usr_password=#{password}
+		WHERE usr_login=#{login} AND
+		usr_password=#{password}
 	</select>
-	
-	<select id="getUtilisateurAcheteurByLogin" parameterType="String" resultMap="UtilisateurResult">
+
+	<select id="getUtilisateurAcheteurByLogin" parameterType="String"
+		resultMap="UtilisateurResult">
 		SELECT *
-		FROM UTILISATEUR INNER JOIN ACHETEUR ON (ACHETEUR.ach_usr_id = UTILISATEUR.usr_id)
+		FROM UTILISATEUR INNER JOIN ACHETEUR ON
+		(ACHETEUR.ach_usr_id = UTILISATEUR.usr_id)
 		WHERE usr_login=#{login}
 	</select>
 
-	<select id="getUtilisateurVendeurByLogin" parameterType="String" resultMap="UtilisateurResult">
+	<select id="getUtilisateurVendeurByLogin" parameterType="String"
+		resultMap="UtilisateurResult">
 		SELECT *
-		FROM UTILISATEUR INNER JOIN VENDEUR ON (VENDEUR.ven_usr_id = UTILISATEUR.usr_id)
+		FROM UTILISATEUR INNER JOIN VENDEUR ON
+		(VENDEUR.ven_usr_id = UTILISATEUR.usr_id)
 		WHERE usr_login=#{login}
 	</select>
 </mapper>

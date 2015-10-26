@@ -7,5 +7,7 @@ import trainingapp.training.entite.Vendeur;
 public interface VendeurMapper {
 	
 	public Vendeur getVendeurById(@Param("id") Integer id);
+	
+	public Vendeur getVendeurByUtilisateurLogin(@Param("login") String login);
 
 }

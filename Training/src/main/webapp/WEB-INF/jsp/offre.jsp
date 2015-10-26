@@ -5,84 +5,134 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@include file="header.jsp"%>
 
-	<h1>Recherche d'offre</h1>
 
 
-	<form:form id="formRechercheOffre"
-		modelAttribute="formulaireRechercheOffre">
-		<div class="col-md-8">
-			<div class="booking-search">
-				<div class="row form-group">
-					<div class="col-md-6">
-						<label class="control-label">Produit: </label>
-						<form:input path="produit" class="form-control" type="text" />
+
+
+
+
+
+<div class="portlet box grey-cascade">
+	<div class="portlet-title">
+		<div class="caption">Recherche d'offre</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- BEGIN FORM-->
+		<form:form id="formRechercheOffre"
+			modelAttribute="formulaireRechercheOffre" class="form-horizontal">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="col-md-3 control-label">Produit</label>
+					<div class="col-md-4">
+						<form:input path="produit" class="form-control input-circle"
+							type="text" />
 					</div>
-					<div class="col-md-6">
-						<label class="control-label">Quantité min: </label>
-						<form:input path="qtMin" class="form-control" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Quantité min</label>
+					<div class="col-md-4">
+
+						<form:input path="qtMin" class="form-control input-circle"
+							type="text" />
+
 					</div>
-					<div class="col-md-6">
-						<label class="control-label">Quantité max: </label>
-						<form:input path="qtMax" class="form-control" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Quantité max</label>
+					<div class="col-md-4">
+
+						<form:input path="qtMax" class="form-control input-circle"
+							type="text" />
+
 					</div>
-					<div class="col-md-6">
-						<label class="control-label">Prix min: </label>
-						<form:input path="prixMin" class="form-control" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Prix min</label>
+					<div class="col-md-4">
+						<div class="input-icon">
+							<form:input path="prixMin" class="form-control input-circle"
+								type="text" />
+						</div>
 					</div>
-					<div class="col-md-6">
-						<label class="control-label">Prix max: </label>
-						<form:input path="prixMax" class="form-control" type="text" />
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Prix max</label>
+					<div class="col-md-4">
+						<div class="input-icon right">
+							</i>
+							<form:input path="prixMax" class="form-control input-circle"
+								type="text" />
+						</div>
 					</div>
-					<div class="col-md-6">
-						<button id=searchButton class="btn blue btn-block margin-top-20">
-							SEARCH <i class="m-icon-swapright m-icon-white"></i>
-						</button>
+				</div>
+
+			</div>
+			<div class="form-actions">
+				<div class="row">
+					<div class="col-md-offset-3 col-md-9">
+						<button id=searchButton
+									class="btn blue btn-circle margin-top-20">
+									SEARCH <i class="m-icon-swapright m-icon-white"></i>
+								</button>
+
 					</div>
 				</div>
 			</div>
-		</div>
-	</form:form>
+		</form:form>
+		<!-- END FORM-->
+	</div>
+</div>
 
 
-	<c:if test="${not empty offres}">
-		<table
-			class="table table-striped table-bordered table-advance table-hover">
-			<thead>
+
+
+
+<c:if test="${not empty offres}">
+	<div class="portlet box grey-cascade">
+	<div class="portlet-title">
+		<div class="caption">Offres correspondantes</div>
+	</div>
+	<table
+		class="table table-striped table-bordered table-advance table-hover">
+		<thead>
+			<tr>
+				<th>Produit</th>
+				<th>Vendeur</th>
+				<th>Quantité</th>
+				<th>Unité</th>
+				<th>Prix unité</th>
+				<th>Date création</th>
+				<th>Réserver</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${offres}" var="item">
 				<tr>
-					<th>Produit</th>
-					<th>Vendeur</th>
-					<th>Quantité</th>
-					<th>Unité</th>
-					<th>Prix unité</th>
-					<th>Date création</th>
-					<th>Réserver</th>
+					<td>${item.produit.nom}<br>
+					</td>
+					<td>${item.vendeur.nomEntreprise}<br>
+					</td>
+					<td>${item.quantite}<br>
+					</td>
+					<td>${item.unite}<br>
+					</td>
+					<td>${item.prixUnite}<br>
+					</td>
+					<td>${item.dateCreation}<br>
+					</td>
+					<td><a name="buyButton"
+						class="btn btn-circle default red-stripe"
+						data-id-offre="${item.id}"> Acheter </a><br></td>
 				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${offres}" var="item">
-					<tr>
-						<td>${item.produit.nom}<br>
-						</td>
-						<td>${item.vendeur.nomEntreprise}<br>
-						</td>
-						<td>${item.quantite}<br>
-						</td>
-						<td>${item.unite}<br>
-						</td>
-						<td>${item.prixUnite}<br>
-						</td>
-						<td>${item.dateCreation}<br>
-						</td>
-						<td><a name="buyButton" class="btn btn-circle default red-stripe" data-id-offre="${item.id}"> Acheter </a><br></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
+</c:if>
 
-	</c:if>
-	
-	<script src="../../assets/global/plugins/jquery-2.1.4.min.js" type="text/javascript"></script>
-	<script src="../../ressources/js/offre.js" type="text/javascript"></script>
-	
+<script src="../../assets/global/plugins/jquery-2.1.4.min.js"
+	type="text/javascript"></script>
+<script src="../../ressources/js/offre.js" type="text/javascript"></script>
+
 
 <%@include file="footer.jsp"%>

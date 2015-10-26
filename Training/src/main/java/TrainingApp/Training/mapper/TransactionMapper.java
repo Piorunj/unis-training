@@ -10,4 +10,5 @@ public interface TransactionMapper {
 	public List<Transaction> getAllTransactionByAcheteurId(@Param("acheteurId")Integer acheteurId);
 	public List<Transaction> getAllTransaction();
 	public Integer addTransaction(@Param("idOffre") Integer idOffre, @Param("idAcheteur") Integer idAcheteur);
+	public List<Transaction> getAllTransactionByVendeurId(@Param("vendeurId") Integer vendeurId);
 }

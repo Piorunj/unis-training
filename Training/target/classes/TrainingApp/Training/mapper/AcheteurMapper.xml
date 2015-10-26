@@ -9,9 +9,15 @@
   		<result property="prenom" column="ach_prenom"/>
   		<result property="nom" column="ach_nom"/>
   		<result property="dateNaissance" column="ach_date_naissance"/>
-  		
-  		<association property="usrId" column="ach_usr_id" select="trainingapp.training.mapper.UtilisateurMapper.getUtilisateurById"/>
+  		<result property="usrId" column="ach_usr_id"/>
   	</resultMap>
   
+  
+  	<select id="getAcheteurByUtilisateurLogin" resultMap="AcheteurResult">
+		SELECT ach_id, ach_prenom, ach_nom, ach_date_naissance, ach_usr_id
+		FROM ACHETEUR INNER JOIN UTILISATEUR ON (ACHETEUR.ach_usr_id =
+		UTILISATEUR.usr_id)
+		WHERE usr_login=#{login}
+	</select>
   
   </mapper>

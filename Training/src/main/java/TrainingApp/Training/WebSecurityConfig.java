@@ -28,13 +28,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/", "/home").permitAll()
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().defaultSuccessUrl("/offre", true)
+		.formLogin().successHandler(new CustomAuthentificationSuccessHandler())
+//		.formLogin().defaultSuccessUrl("/user", true)
 //		.loginPage("/login")
 		.permitAll()
 		.and()
 		.logout()
 		.permitAll();
-
 
 	}
 

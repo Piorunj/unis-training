@@ -15,4 +15,15 @@
 		FROM PRODUIT
 		WHERE prt_id = #{id}
 	</select>
+	
+	<select id="getProduitByName" resultMap="ProduitResult" >
+		SELECT *
+		FROM PRODUIT
+		WHERE prt_nom = #{nom}
+	</select>
+	
+	<insert id="ajouterProduit">
+		INSERT INTO PRODUIT (prt_nom)
+		values (#{nom})
+	</insert>
 </mapper>

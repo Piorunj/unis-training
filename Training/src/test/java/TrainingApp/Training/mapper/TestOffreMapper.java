@@ -1,8 +1,5 @@
 package trainingapp.training.mapper;
 
-import static org.junit.Assert.*;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import trainingapp.training.AbstractTrainingTest;
 import trainingapp.training.entite.Offre;
-import trainingapp.training.entite.Produit;
-import trainingapp.training.entite.Vendeur;
 
 public class TestOffreMapper extends AbstractTrainingTest{
 	@Autowired

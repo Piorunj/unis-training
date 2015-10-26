@@ -29,6 +29,15 @@
 		WHERE off_id=#{id}
 	</select>
 
+	<select id="getOffreByVendeurId" resultMap="OffreResult">
+		SELECT *
+		FROM OFFRE
+		WHERE OFFRE.off_ven_id = #{id}
+		AND off_id NOT IN (
+				SELECT off_id
+				FROM OFFRE INNER JOIN TRANSACTION ON (OFFRE.off_id = TRANSACTION.tra_off_id) 
+			)
+	</select>
 
 	<select id="getOffreParCritere" resultMap="OffreResult">
 		SELECT *
@@ -47,4 +56,13 @@
 			)
 		</where>
 	</select>
+	
+	<delete id="deleteOffreByOffreId">
+	  delete from OFFRE where off_id = #{id}
+	</delete>
+	
+	<insert id="ajouterOffre" useGeneratedKeys="true">
+		insert into OFFRE (off_prt_id, off_ven_id, off_quantite, off_unite, off_prix_unite, off_date_creation)
+		values (#{produitId}, #{vendeurId}, #{quantite}, #{unite}, #{prixUnite}, #{dateCreation})
+	</insert>
 </mapper>

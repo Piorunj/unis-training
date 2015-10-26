@@ -13,4 +13,5 @@ public interface UtilisateurMapper {
 	public Utilisateur getUtilisateurAcheteurByLogin(@Param("login") String login);
 
 	public Utilisateur getUtilisateurVendeurByLogin(@Param("login")String login);
+	
 }

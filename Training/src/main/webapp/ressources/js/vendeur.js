@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('#newOffre').on('click', redirectNewOffre);
-	$('a[name=deleteButton]').on('click', deleteOffre);
+	$('table').on('click', '.deleteButton', deleteOffre);
 });
 
 
@@ -18,7 +18,7 @@ function deleteOffre(e){
 	e.preventDefault();
 	$.ajax({
 		type: "GET",
-		url: "/user/vendeur/delete"+$(this).attr("data-id-offre"),
+		url: "/user/vendeur/delete"+$(this).data("id-offre"),
 		success : function(resp){
 			$('body').html(resp);
 			toastr.options = {

@@ -1,4 +1,4 @@
-package trainingapp.training.service.impl;
+package trainingapp.training.service;
 
 import org.springframework.stereotype.Service;
 

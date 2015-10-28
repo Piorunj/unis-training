@@ -1,0 +1,9 @@
+label.error {
+margin: 10px 0px;
+padding:12px;
+}
+
+label.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}

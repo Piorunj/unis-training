@@ -1,6 +1,9 @@
 $(document).ready(function(){
 	$('#searchButton').on('click', offreSearch);
 	$('a[name=buyButton]').on('click', achatOffre);
+	
+	
+
 });
 
 

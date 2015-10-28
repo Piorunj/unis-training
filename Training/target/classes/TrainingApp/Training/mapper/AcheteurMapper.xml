@@ -19,5 +19,10 @@
 		UTILISATEUR.usr_id)
 		WHERE usr_login=#{login}
 	</select>
+	
+	<insert id="createAcheteur" useGeneratedKeys="true">
+		insert into ACHETEUR (ach_usr_id, ach_prenom, ach_nom, ach_date_naissance)
+		values (#{usrId}, #{prenom}, #{nom}, #{date})
+	</insert>
   
   </mapper>

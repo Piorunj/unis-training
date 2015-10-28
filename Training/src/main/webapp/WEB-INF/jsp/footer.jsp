@@ -1,15 +1,20 @@
-	<!-- BEGIN FOOTER -->
+
 <div class="page-footer">
     <div class="page-footer-inner">
-         2014 &copy; Metronic by keenthemes.
-    </div>
-    <div class="page-footer-tools">
-        <span class="go-top">
-        <i class="fa fa-angle-up"></i>
-        </span>
+         2015 &copy; Jordan & corp.
     </div>
 </div>
 
+
+	<!-- BEGIN FOOTER -->
+</body>
+</html>
+
+
+<script type="text/javascript"
+	src="../../assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+	src="../../assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 <script src="../../assets/global/plugins/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="../../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script src="../../assets/admin/pages/scripts/ui-toastr.js" type="text/javascript"></script>
@@ -57,6 +62,12 @@
 <script src="../../assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="../../assets/admin/pages/scripts/index.js" type="text/javascript"></script>
 <script src="../../assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
+
+
+<script src="../../ressources/js/jquery.validate.js" type="text/javascript"></script> 
+<script src="../../ressources/js/newOffre.js" type="text/javascript"></script> 
+	
+
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 jQuery(document).ready(function() {    
@@ -76,6 +87,3 @@ jQuery(document).ready(function() {
 </script>
 <!-- END JAVASCRIPTS -->
 
-
-</body>
-</html>

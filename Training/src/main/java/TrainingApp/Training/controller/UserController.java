@@ -105,5 +105,10 @@ public class UserController {
 		mav.addObject("offreList", offreList);
 		return mav;
 	}
+	
+	@RequestMapping(value="/create", method= RequestMethod.GET)
+	public ModelAndView creationUtilisateur(){
+		mav = new ModelAndView();
+	}
 
 }

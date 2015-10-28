@@ -1,5 +1,6 @@
 package trainingapp.training.service.impl;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import trainingapp.training.entite.Acheteur;
 import trainingapp.training.entite.Utilisateur;
+import trainingapp.training.mapper.AcheteurMapper;
 import trainingapp.training.mapper.UtilisateurMapper;
 import trainingapp.training.service.UtilisateurService;
 
@@ -20,6 +22,9 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	
 	@Autowired
 	private UtilisateurMapper utilisateurMapper;
+	
+	@Autowired
+	private AcheteurMapper acheteurMapper;
 
 	@Override
 	public Integer isExist(String login, String password) {
@@ -56,6 +61,20 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	@Override
 	public Utilisateur getUtilisateurVendeurByLogin(String login) {
 		return utilisateurMapper.getUtilisateurVendeurByLogin(login);
+	}
+
+	@Override
+	public void createAcheteur(String login, String password, String telephone, String prenom, String nom,
+			LocalDate date) {
+		Integer usrId = utilisateurMapper.createUtilisateur(login, password, telephone);
+		acheteurMapper.createAcheteur(usrId, prenom, nom, date);
+		
+	}
+
+	@Override
+	public void createVendeur(String login, String password, String telephone, String entreprise) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

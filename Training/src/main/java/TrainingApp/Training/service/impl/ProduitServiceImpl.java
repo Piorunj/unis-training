@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import trainingapp.training.entite.Produit;
 import trainingapp.training.mapper.ProduitMapper;
+import trainingapp.training.service.ProduitService;
 
 @Service
 public class ProduitServiceImpl implements ProduitService{

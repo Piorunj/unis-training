@@ -44,4 +44,10 @@
 		(VENDEUR.ven_usr_id = UTILISATEUR.usr_id)
 		WHERE usr_login=#{login}
 	</select>
+	
+	<insert id="createUtilisateur" useGeneratedKeys="true">
+		insert into UTILISATEUR (usr_login, usr_password, usr_telephone)
+		values (#{login}, #{password}, #{telephone})
+		returning usr_id
+	</insert>
 </mapper>

@@ -8,131 +8,214 @@
 
 
 
+<div class="page-content" style="min-height: 1190px">
+	<div class="container">
+		<div class="page-container">
+			<div class="page-side-wrapper">
+				<div class="page-content" style="min-height: 1190px">
 
 
-
-
-<div class="portlet box grey-cascade">
-	<div class="portlet-title">
-		<div class="caption">Recherche d'offre</div>
-	</div>
-	<div class="portlet-body form">
-		<!-- BEGIN FORM-->
-		<form:form id="formRechercheOffre"
-			modelAttribute="formulaireRechercheOffre" class="form-horizontal">
-			<div class="form-body">
-				<div class="form-group">
-					<label class="col-md-3 control-label">Produit</label>
-					<div class="col-md-4">
-						<form:input path="produit" class="form-control input-circle"
-							type="text" />
+					<div class="page-bar col-md-12">
+						<ul class="page-breadcrumb">
+							<li><i class="fa fa-home"></i> <a href="/user/acheteur">Home
+									${usrName}</a> <i class="fa fa-angle-right"></i></li>
+							<li><a href="/offre">Recherche offre</a></li>
+						</ul>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-3 control-label">Quantité min</label>
-					<div class="col-md-4">
 
-						<form:input path="qtMin" class="form-control input-circle"
-							type="text" />
+					<div class="portlet box blue">
+						<div class="portlet-title">
+							<div class="caption">Recherche d'offre</div>
+						</div>
+						<div class="portlet-body form">
+							<!-- BEGIN FORM-->
+							<form:form id="formRechercheOffre"
+								modelAttribute="formulaireRechercheOffre"
+								class="form-horizontal">
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-3 control-label">Produit</label>
+										<div class="col-md-4">
+											<form:input path="produit" class="form-control input-circle"
+												type="text" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Quantité min</label>
+										<div class="col-md-4">
 
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-3 control-label">Quantité max</label>
-					<div class="col-md-4">
+											<form:input path="qtMin" class="form-control input-circle"
+												type="text" />
 
-						<form:input path="qtMax" class="form-control input-circle"
-							type="text" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Quantité max</label>
+										<div class="col-md-4">
 
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-3 control-label">Prix min</label>
-					<div class="col-md-4">
-						<div class="input-icon">
-							<form:input path="prixMin" class="form-control input-circle"
-								type="text" />
+											<form:input path="qtMax" class="form-control input-circle"
+												type="text" />
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Prix min</label>
+										<div class="col-md-4">
+											<div class="input-icon">
+												<form:input path="prixMin" class="form-control input-circle"
+													type="text" />
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Prix max</label>
+										<div class="col-md-4">
+											<div class="input-icon right">
+												<form:input path="prixMax" class="form-control input-circle"
+													type="text" />
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div class="form-actions">
+									<div class="row">
+										<div class="col-md-offset-3 col-md-9">
+											<button id=searchButton
+												class="btn blue btn-circle margin-top-20">
+												SEARCH <i class="m-icon-swapright m-icon-white"></i>
+											</button>
+
+										</div>
+									</div>
+								</div>
+							</form:form>
+							<!-- END FORM-->
 						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-3 control-label">Prix max</label>
-					<div class="col-md-4">
-						<div class="input-icon right">
-							</i>
-							<form:input path="prixMax" class="form-control input-circle"
-								type="text" />
+
+
+
+					<c:if test="${not empty offres}">
+						<div class="row">
+							<div class="col-md-12">
+								<!-- BEGIN EXAMPLE TABLE PORTLET-->
+								<div class="portlet box blue">
+									<div class="portlet-title">
+										<div class="caption">
+											<i class="fa fa-globe"></i>Offres correspondantes
+										</div>
+									</div>
+									<div class="portlet-body">
+
+										<div id="sample_1_wrapper"
+											class="dataTables_wrapper no-footer">
+
+											<div class="table-scrollable">
+												<table
+													class="table table-striped table-bordered table-hover dataTable no-footer"
+													id="sample_1" role="grid" aria-describedby="sample_1_info">
+													<thead>
+														<tr role="row">
+															<th class="sorting" tabindex="0" aria-controls="sample_1"
+																rowspan="1" colspan="1" aria-sort="ascending"
+																aria-label="
+										 Produit
+									: activate to sort column ascending"
+																style="width: 100px;">Produit</th>
+															<th class="sorting_disabled" rowspan="1" colspan="1"
+																aria-label="
+										 Email
+									"
+																style="width: 100px;">Vendeur</th>
+															<th class="sorting_disabled" rowspan="1" colspan="1"
+																aria-label="
+										 Points
+									"
+																style="width: 100px;">Quantité</th>
+															<th class="sorting" tabindex="0" aria-controls="sample_1"
+																rowspan="1" colspan="1"
+																aria-label="
+										 Joined
+									: activate to sort column ascending"
+																style="width: 142px;">Unité</th>
+															<th class="sorting_disabled" rowspan="1" colspan="1"
+																aria-label="
+										 Status
+									"
+																style="width: 158px;">Prix unité</th>
+															<th class="sorting_disabled" rowspan="1" colspan="1"
+																aria-label="
+										 Status
+									"
+																style="width: 158px;">Date création</th>
+															<th class="sorting_disabled" rowspan="1" colspan="1"
+																aria-label="
+										 Status
+									"
+																style="width: 158px;">Réserver</th>
+																</tr>
+													</thead>
+													<tbody>
+
+
+
+
+														<c:forEach items="${offres}" var="item">
+															<tr class="gradeX odd" role="row">
+
+																<td>${item.produit.nom}<br>
+																</td>
+																<td>${item.vendeur.nomEntreprise}<br>
+																</td>
+																<td>${item.quantite}<br>
+																</td>
+																<td>${item.unite}<br>
+																</td>
+																<td>${item.prixUnite}<br>
+																</td>
+																<td>${item.dateCreation}<br>
+																</td>
+																<td><a name="buyButton"
+																	class="btn btn-circle default red-stripe"
+																	data-id-offre="${item.id}"> Acheter </a><br></td>
+															</tr>
+
+														</c:forEach>
+
+													</tbody>
+
+
+												</table>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<!-- END EXAMPLE TABLE PORTLET-->
+							</div>
 						</div>
-					</div>
-				</div>
+					</c:if>
 
-			</div>
-			<div class="form-actions">
-				<div class="row">
-					<div class="col-md-offset-3 col-md-9">
-						<button id=searchButton
-									class="btn blue btn-circle margin-top-20">
-									SEARCH <i class="m-icon-swapright m-icon-white"></i>
-								</button>
-
-					</div>
 				</div>
 			</div>
-		</form:form>
-		<!-- END FORM-->
+		</div>
 	</div>
 </div>
-
-
-
-
-
-<c:if test="${not empty offres}">
-	<div class="portlet box grey-cascade">
-	<div class="portlet-title">
-		<div class="caption">Offres correspondantes</div>
-	</div>
-	<table
-		class="table table-striped table-bordered table-advance table-hover">
-		<thead>
-			<tr>
-				<th>Produit</th>
-				<th>Vendeur</th>
-				<th>Quantité</th>
-				<th>Unité</th>
-				<th>Prix unité</th>
-				<th>Date création</th>
-				<th>Réserver</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${offres}" var="item">
-				<tr>
-					<td>${item.produit.nom}<br>
-					</td>
-					<td>${item.vendeur.nomEntreprise}<br>
-					</td>
-					<td>${item.quantite}<br>
-					</td>
-					<td>${item.unite}<br>
-					</td>
-					<td>${item.prixUnite}<br>
-					</td>
-					<td>${item.dateCreation}<br>
-					</td>
-					<td><a name="buyButton"
-						class="btn btn-circle default red-stripe"
-						data-id-offre="${item.id}"> Acheter </a><br></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-</div>
-</c:if>
-
-<script src="../../assets/global/plugins/jquery-2.1.4.min.js"
+<script src="../../assets/global/plugins/jquery.min.js"
 	type="text/javascript"></script>
 <script src="../../ressources/js/offre.js" type="text/javascript"></script>
+
+<script type="text/javascript"
+	src="../../assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+
+
+<script>
+	$('#sample_1').DataTable();
+</script>
+
+<script type="text/javascript"
+	src="../../assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 
 
 <%@include file="footer.jsp"%>

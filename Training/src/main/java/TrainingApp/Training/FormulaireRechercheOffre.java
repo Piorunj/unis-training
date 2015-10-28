@@ -1,5 +1,9 @@
 package trainingapp.training;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,6 +13,8 @@ import lombok.ToString;
 @ToString
 public class FormulaireRechercheOffre {
 
+	@NotNull(message = "Toto null")
+	@NotEmpty(message = "Toto vide")
 	private String produit;
 	
 	private Integer qtMin;

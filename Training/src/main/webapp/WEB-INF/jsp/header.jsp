@@ -40,7 +40,9 @@
 <link href="../../assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="../../assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
 <link href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
-<link href="../../ressources/css/errors.css" rel="stylesheet" type="text/css"/>
+<link href="../../ressources/css/custom.css" rel="stylesheet" type="text/css"/>
+<link href="../../assets/global/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="../../ressources/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 <!-- <link href="../../assets/global/plugins/datatables/media/css/jquery.dataTables_themeroller.min.css" rel="stylesheet" type="text/css"/>
 <link href="../../assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/> -->
 <!-- END THEME STYLES -->

@@ -90,10 +90,12 @@
 							rhoncus in. Nulla facilisi. Sed sodales elit est. Nulla auctor
 							turpis a massa tristique rutrum.</p>
 					</div>
-
-				<input type="submit" name="loginBtn"
-					class="btn btn-circle red-sunglo" value="Sign in">
 				</div>
+					<a id="loginBtn"
+					class="btn btn-circle red-sunglo"><i class="icon-login"></i> Se connecter</a>
+					<a id="createUserBtn"
+					class="btn btn-circle red-sunglo"><span aria-hidden="true" class="icon-users"> creer un comtpe</span></a>
+				
 				</div>
 			</div>
 		</div>

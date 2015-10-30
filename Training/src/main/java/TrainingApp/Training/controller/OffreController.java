@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import trainingapp.training.FormulaireRechercheOffre;
 import trainingapp.training.entite.Offre;
 import trainingapp.training.entite.Produit;
 import trainingapp.training.entite.Utilisateur;
+import trainingapp.training.service.AcheteurService;
 import trainingapp.training.service.OffreService;
 import trainingapp.training.service.ProduitService;
 import trainingapp.training.service.TransactionService;
@@ -42,15 +44,22 @@ public class OffreController {
 
 	@Autowired
 	private UtilisateurService utilisateurService;
+	
+	@Autowired
+	private AcheteurService acheteurService;
 
 	@Autowired
 	private VendeurService vendeurService;
 
 	private ModelAndView mav;
 
+	@PreAuthorize("hasRole('ACHETEUR')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView resultatRecherche(@ModelAttribute("formulaireRechercheOffre") final FormulaireRechercheOffre formulaire){
 		mav = new ModelAndView("offre");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Utilisateur utilisateur = utilisateurService.getUtilisateurAcheteurByLogin(auth.getName());
+		mav.addObject("usrName", utilisateur.getLogin());
 		if(formulaire != null && !formulaire.isEmpty()){
 			List<Offre> offres = offreService.getOffreParCritere(formulaire.getProduit(), formulaire.getQtMin(), formulaire.getQtMax(), formulaire.getPrixMin(),formulaire.getPrixMax());
 			mav.addObject("offres", offres);
@@ -60,6 +69,7 @@ public class OffreController {
 	}
 
 
+	@PreAuthorize("hasRole('ACHETEUR')")
 	@RequestMapping(method = RequestMethod.GET, value="{idOffre}")
 	public ModelAndView ajoutTransaction(@ModelAttribute("formulaireRechercheOffre") FormulaireRechercheOffre formulaire, @PathVariable Integer idOffre){
 		mav = new ModelAndView("offre");
@@ -68,11 +78,18 @@ public class OffreController {
 			mav.addObject("offres", offres);
 		}
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		transactionService.addTransaction(idOffre, utilisateurService.getUtilisateurAcheteurByLogin(auth.getName()).getId());
+		
+		Utilisateur utilisateur = utilisateurService.getUtilisateurAcheteurByLogin(auth.getName());
+		
+		Integer acheteurId = acheteurService.getAcheteurByUtilisateurLogin(utilisateur.getLogin()).getId();
+
+		transactionService.addTransaction(idOffre, acheteurId);
+		mav.addObject("usrName", utilisateur.getLogin());
 		mav.addObject("formulaireRechercheOffre", new FormulaireRechercheOffre());
 		return mav;
 	}
 
+	@PreAuthorize("hasRole('VENDEUR')")
 	@RequestMapping(method = RequestMethod.POST, value="/new")
 	public ModelAndView creationOffre(@Validated @ModelAttribute("formulaireCreationOffre") final FormulaireCreationOffre formulaire, final BindingResult br){
 		mav = new ModelAndView("newOffre");
@@ -80,6 +97,7 @@ public class OffreController {
 
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			Utilisateur utilisateur = utilisateurService.getUtilisateurVendeurByLogin(auth.getName());
+			mav.addObject("usrName", utilisateur.getLogin());
 
 			Produit produit = produitService.getProduitByName(formulaire.getProduit());
 			Integer produitId;
@@ -97,16 +115,20 @@ public class OffreController {
 			recap.setQuantite(formulaire.getQuantite());
 			recap.setUnite(formulaire.getUnite());
 			recap.setDateCreation(dateOffre);
-
 			mav.addObject("recap", recap);
 		}
 		mav.addObject("fomulaireCreationOffre", new FormulaireCreationOffre());
 		return mav;
 	}
 	
+	@PreAuthorize("hasRole('VENDEUR')")
 	@RequestMapping(method = RequestMethod.GET, value="/new")
 	public ModelAndView firstLoadNewOffre(@ModelAttribute("formulaireCreationOffre") final FormulaireCreationOffre formulaire){
 		mav = new ModelAndView("newOffre");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Utilisateur utilisateur = utilisateurService.getUtilisateurVendeurByLogin(auth.getName());
+
+		mav.addObject("usrName", utilisateur.getLogin());
 		mav.addObject("fomulaireCreationOffre", new FormulaireCreationOffre());
 		return mav;
 	}

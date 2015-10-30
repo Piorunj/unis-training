@@ -22,7 +22,7 @@
 	
 	<insert id="createAcheteur" useGeneratedKeys="true">
 		insert into ACHETEUR (ach_usr_id, ach_prenom, ach_nom, ach_date_naissance)
-		values (#{usrId}, #{prenom}, #{nom}, #{date})
+		values (#{usrId}, #{prenom}, #{nom}, #{dateNaissance})
 	</insert>
   
   </mapper>

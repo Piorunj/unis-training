@@ -34,6 +34,7 @@ $(document).ready(function(){
 //	$('#saveButton').on('click', offreCreate);
 	$('#backButton').on('click', backPage);
 //	$('#save').on('click', offreCreate);
+	$('#descVendeur').on('click', redirectDesc);
 	
 	 $("#formNewOffre").validate({
        rules: {
@@ -86,6 +87,17 @@ $(document).ready(function(){
        }
    });
 });
+
+function redirectDesc(e){
+	e.preventDefault();
+	$.ajax({
+		type: "GET",
+		url: "/user/vendeur/desc",
+		success: function(resp){
+			$('body').html(resp);
+		}
+	});
+}
 
 
 function offreCreate(e){

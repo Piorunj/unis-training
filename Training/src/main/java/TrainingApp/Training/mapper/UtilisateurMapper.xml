@@ -45,9 +45,8 @@
 		WHERE usr_login=#{login}
 	</select>
 	
-	<insert id="createUtilisateur" useGeneratedKeys="true">
+	<insert id="createUtilisateur" useGeneratedKeys="true" keyColumn="usr_id" keyProperty="utilisateur.id">
 		insert into UTILISATEUR (usr_login, usr_password, usr_telephone)
-		values (#{login}, #{password}, #{telephone})
-		returning usr_id
+		values (#{utilisateur.login}, #{utilisateur.password}, #{utilisateur.telephone})
 	</insert>
 </mapper>

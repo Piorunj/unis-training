@@ -17,10 +17,31 @@
 
 					<div class="page-bar col-md-12">
 						<ul class="page-breadcrumb">
-							<li><i class="fa fa-home"></i> <a href="/user/acheteur">Home
-									${usrName}</a> <i class="fa fa-angle-right"></i></li>
+							<li><i class="fa fa-home"></i> <a href="/user/acheteur">Home</a> <i class="fa fa-angle-right"></i></li>
 							<li><a href="/offre">Recherche offre</a></li>
 						</ul>
+						<div class="top-menu">
+							<ul class="nav navbar-nav pull-right">
+
+								<li class="dropdown dropdown-user"><a href="javascript:;"
+									class="dropdown-toggle" data-toggle="dropdown"
+									data-hover="dropdown" data-close-others="true"
+									aria-expanded="false">
+										<span class="username username-hide-on-mobile">
+											${usrName} </span> <i class="fa fa-angle-down"></i>
+								</a>
+									<ul class="dropdown-menu dropdown-menu-default">
+										<li><a id="descAch"> <i
+												class="icon-user"></i> My Profile
+										</a></li>
+
+										<li><a href="/logout"> <i class="icon-key"></i> Log
+												Out
+										</a></li>
+									</ul></li>
+
+							</ul>
+						</div>
 					</div>
 
 					<div class="portlet box blue">
@@ -176,9 +197,9 @@
 																</td>
 																<td>${item.dateCreation}<br>
 																</td>
-																<td><a name="buyButton"
-																	class="btn btn-circle default red-stripe"
-																	data-id-offre="${item.id}"> Acheter </a><br></td>
+																<td class="buyButton" data-id-offre="${item.id}"><a
+																	class="btn green-meadow"
+																	><span aria-hidden="true" class="icon-basket-loaded"></span> Acheter </a><br></td>
 															</tr>
 
 														</c:forEach>

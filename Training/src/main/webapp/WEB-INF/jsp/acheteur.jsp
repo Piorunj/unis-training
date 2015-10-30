@@ -14,14 +14,35 @@
 
 					<div class="page-bar">
 						<ul class="page-breadcrumb">
-							<li><i class="fa fa-home"></i> <a href="/user/acheteur">Home ${usrName}</a> </li>
+							<li><i class="fa fa-home"></i> <a href="/user/acheteur">Home</a>
+							</li>
 						</ul>
+						<div class="top-menu">
+							<ul class="nav navbar-nav pull-right">
+
+								<li class="dropdown dropdown-user"><a href="javascript:;"
+									class="dropdown-toggle" data-toggle="dropdown"
+									data-hover="dropdown" data-close-others="true"
+									aria-expanded="false"> <span
+										class="username username-hide-on-mobile"> ${usrName} </span> <i
+										class="fa fa-angle-down"></i>
+								</a>
+									<ul class="dropdown-menu dropdown-menu-default">
+										<li><a id="descAch" > <i
+												class="icon-user"></i> My Profile
+										</a></li>
+
+										<li><a href="/logout"> <i class="icon-key"></i> Log
+												Out
+										</a></li>
+									</ul></li>
+
+							</ul>
+						</div>
 					</div>
-										<a id=newTransaction class="btn default blue-stripe"> <i class="fa fa-plus-square-o"></i> Nouvelle
-							transaction </a>
 
 
-					
+
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -33,6 +54,9 @@
 								</div>
 								<div class="portlet-body">
 
+									<button id="newTransaction" class="btn green">
+												Nouvelle transaction <i class="fa fa-plus"></i>
+												</button>
 									<div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
 
 										<div class="table-scrollable">
@@ -143,13 +167,13 @@
 <script src="../../ressources/js/acheteur.js" type="text/javascript"></script>
 <script type="text/javascript"
 	src="../../assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
-
+<script src="../../ressources/js/dataTables.bootstrap.js" type="text/javascript"></script>
 <script>
 	$('#sample_1').DataTable();
 </script>
-<script type="text/javascript"
+<!-- <script type="text/javascript"
 	src="../../assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
-
+ -->
 
 
 <%@include file="footer.jsp"%>

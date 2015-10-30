@@ -14,6 +14,6 @@ public interface UtilisateurMapper {
 
 	public Utilisateur getUtilisateurVendeurByLogin(@Param("login")String login);
 
-	public Integer createUtilisateur(String login, String password, String telephone);
+	public Integer createUtilisateur(@Param("utilisateur") Utilisateur utilisateur);
 	
 }

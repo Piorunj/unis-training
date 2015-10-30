@@ -10,10 +10,32 @@
 
 					<div class="page-bar">
 						<ul class="page-breadcrumb">
-							<li><i class="fa fa-home"></i> <a href="/user/vendeur">Home ${usrName}</a> </li>
+							<li><i class="fa fa-home"></i> <a href="/user/vendeur">Home</a></li>
 						</ul>
+						<div class="top-menu">
+							<ul class="nav navbar-nav pull-right">
+
+								<li class="dropdown dropdown-user"><a href="javascript:;"
+									class="dropdown-toggle" data-toggle="dropdown"
+									data-hover="dropdown" data-close-others="true"
+									aria-expanded="false"> <span
+										class="username username-hide-on-mobile"> ${usrName} </span> <i
+										class="fa fa-angle-down"></i>
+								</a>
+									<ul class="dropdown-menu dropdown-menu-default">
+										<li><a id="descVendeur"> <i
+												class="icon-user"></i> My Profile
+										</a></li>
+
+										<li><a href="/logout"> <i class="icon-key"></i> Log
+												Out
+										</a></li>
+									</ul></li>
+
+							</ul>
+						</div>
 					</div>
-					<a id=newOffre class="btn default blue-stripe"><i class="fa fa-plus-square-o"></i> Nouvelle Offre </a>
+
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -140,7 +162,9 @@
 									</div>
 								</div>
 								<div class="portlet-body">
-
+									<button id="newOffre" class="btn green">
+												Nouvelle offre <i class="fa fa-plus"></i>
+												</button>
 									<div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
 
 										<div class="table-scrollable">
@@ -185,7 +209,7 @@
 															aria-label="
 										 Status
 									"
-															style="width: 158px;">Actions</th>
+															style="width: 158px;">Supprimer</th>
 												<tbody>
 
 
@@ -205,10 +229,10 @@
 															</td>
 															<td>${item.dateCreation}<br>
 															</td>
-															<td class="deleteButton" data-id-offre="${item.id}"><a
-																class="btn btn-sm red"> <i class="fa fa-times"></i>
-																	Supprimer
-															</a><br></td>
+															<td class="deleteButton" data-id-offre="${item.id}"><button
+																	type="button" class="btn btn-circle red">
+																	<i class="fa fa-times"></i>
+																</button> <br></td>
 
 														</tr>
 

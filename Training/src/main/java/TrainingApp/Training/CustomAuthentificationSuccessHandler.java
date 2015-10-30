@@ -20,10 +20,10 @@ public class CustomAuthentificationSuccessHandler implements  AuthenticationSucc
 		Collection<? extends GrantedAuthority> roles = auth.getAuthorities();
 		
 		if(roles.size() == 1 && roles.contains(new SimpleGrantedAuthority("VENDEUR"))){
-			res.setStatus(res.SC_OK);
+			res.setStatus(HttpServletResponse.SC_OK);
 			res.sendRedirect("user/vendeur");
 		}else if(roles.size() == 1 && roles.contains(new SimpleGrantedAuthority("ACHETEUR"))){
-			res.setStatus(res.SC_OK);
+			res.setStatus(HttpServletResponse.SC_OK);
 			res.sendRedirect("user/acheteur");
 		}else{
 			throw new RuntimeException("Role Incorrect");

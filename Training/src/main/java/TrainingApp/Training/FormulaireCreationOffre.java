@@ -16,7 +16,6 @@ public class FormulaireCreationOffre {
 	
 	public boolean isEmpty(){
 		return (produit == null && quantite == null && unite == null && prixUnite == null);
-
 	}
 	
 	public boolean correctlySet(){

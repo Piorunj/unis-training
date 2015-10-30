@@ -1,8 +1,7 @@
 $(document).ready(function(){
 	$('#searchButton').on('click', offreSearch);
-	$('a[name=buyButton]').on('click', achatOffre);
-	
-	
+	$('table').on('click','.buyButton', achatOffre);
+	$('#descAch').on('click', redirectDescription);
 
 });
 
@@ -42,6 +41,17 @@ function achatOffre(e){
 					  "hideMethod": "fadeOut"
 					}
 			toastr.success("transaction validée");
+		}
+	});
+}
+
+function redirectDescription(e){
+	e.preventDefault();
+	$.ajax({
+		type: "GET",
+		url: "/user/acheteur/desc",
+		success: function(resp){
+			$('body').html(resp);
 		}
 	});
 }

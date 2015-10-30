@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +14,7 @@ import trainingapp.training.service.UtilisateurService;
 
 @Configuration
 @EnableWebMvcSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Lazy
@@ -25,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 		http
 		.authorizeRequests()
-		.antMatchers("/", "/home").permitAll()
+		.antMatchers("/", "/home", "/user/create/acheteur", "/user/create", "/user/create/vendeur").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.formLogin().successHandler(new CustomAuthentificationSuccessHandler())
@@ -33,8 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 //		.loginPage("/login")
 		.permitAll()
 		.and()
-		.logout()
+		.logout().logoutSuccessUrl("/")
 		.permitAll();
+		
+		http.exceptionHandling().accessDeniedPage("/error/accessDenied");
 
 	}
 

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$('#newOffre').on('click', redirectNewOffre);
 	$('table').on('click', '.deleteButton', deleteOffre);
+	$('#descVendeur').on('click', redirectDesc);
 });
 
 
@@ -8,6 +9,17 @@ function redirectNewOffre(){
 	$.ajax({
 		type: "GET",
 		url: "/offre/new",
+		success: function(resp){
+			$('body').html(resp);
+		}
+	});
+}
+
+function redirectDesc(e){
+	e.preventDefault();
+	$.ajax({
+		type: "GET",
+		url: "/user/vendeur/desc",
 		success: function(resp){
 			$('body').html(resp);
 		}

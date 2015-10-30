@@ -10,7 +10,7 @@ public interface AcheteurMapper {
 	
 	public Acheteur getAcheteurByUtilisateurLogin(@Param("login") String login);
 
-	public void createAcheteur(Integer usrId, String prenom, String nom, LocalDate date);
+	public void createAcheteur(@Param("usrId") Integer usrId,@Param("prenom") String prenom, @Param("nom") String nom, @Param("dateNaissance") LocalDate date);
 	
 
 }

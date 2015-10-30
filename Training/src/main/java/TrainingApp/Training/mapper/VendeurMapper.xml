@@ -24,6 +24,10 @@
   		FROM VENDEUR INNER JOIN UTILISATEUR ON (VENDEUR.ven_usr_id = UTILISATEUR.usr_id)
   		WHERE usr_login=#{login}
   	</select>
-  
+  	
+  	<insert id="createVendeur" useGeneratedKeys="true">
+  		insert into VENDEUR (ven_usr_id, ven_nom_entreprise)
+  		values (#{usrId}, #{entreprise})
+  	</insert>
   
   </mapper>

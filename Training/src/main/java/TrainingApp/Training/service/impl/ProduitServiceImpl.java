@@ -8,8 +8,8 @@ import trainingapp.training.mapper.ProduitMapper;
 import trainingapp.training.service.ProduitService;
 
 @Service
-public class ProduitServiceImpl implements ProduitService{
-	
+public class ProduitServiceImpl implements ProduitService {
+
 	@Autowired
 	private ProduitMapper produitMapper;
 

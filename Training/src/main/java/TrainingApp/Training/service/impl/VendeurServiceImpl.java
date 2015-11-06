@@ -8,8 +8,8 @@ import trainingapp.training.mapper.VendeurMapper;
 import trainingapp.training.service.VendeurService;
 
 @Service
-public class VendeurServiceImpl implements VendeurService{
-	
+public class VendeurServiceImpl implements VendeurService {
+
 	@Autowired
 	private VendeurMapper vendeurMapper;
 
@@ -17,6 +17,5 @@ public class VendeurServiceImpl implements VendeurService{
 	public Vendeur getVendeurByUtilisateurLogin(String login) {
 		return vendeurMapper.getVendeurByUtilisateurLogin(login);
 	}
-	
-	
+
 }

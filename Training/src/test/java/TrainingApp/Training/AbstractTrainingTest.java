@@ -35,9 +35,9 @@ import trainingapp.training.entite.Vendeur;
 public abstract class AbstractTrainingTest {
 	@Autowired
 	private DataSource dataSource;
-	
+
 	private static Boolean hasBeenReset = Boolean.FALSE;
-	
+
 	protected Integer NB_TRANSACTION = 2;
 
 	@Before
@@ -57,23 +57,23 @@ public abstract class AbstractTrainingTest {
 			}
 		}
 	}
-	
-	protected Produit createProduit(){
+
+	protected Produit createProduit() {
 		Produit produit = new Produit();
 		produit.setId(1);
 		produit.setNom("beta product");
 		return produit;
 	}
-	
-	protected Vendeur createVendeur(){
+
+	protected Vendeur createVendeur() {
 		Vendeur vendeur = new Vendeur();
 		vendeur.setId(1);
 		vendeur.setNomEntreprise("monEntreprise");
 		vendeur.setUsrId(1);
 		return vendeur;
 	}
-	
-	protected Utilisateur createUser(){
+
+	protected Utilisateur createUser() {
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur.setId(1);
 		utilisateur.setLogin("user1");
@@ -81,11 +81,11 @@ public abstract class AbstractTrainingTest {
 		utilisateur.setTelephone("0000000000");
 		return utilisateur;
 	}
-	
-	protected Offre createOffre(){
+
+	protected Offre createOffre() {
 		Vendeur vendeur = createVendeur();
 		Produit produit = createProduit();
-		
+
 		Offre offre = new Offre();
 		offre.setId(1);
 		offre.setPrixUnite(1);
@@ -96,38 +96,38 @@ public abstract class AbstractTrainingTest {
 		offre.setProduit(produit);
 		return offre;
 	}
-	
-	protected Transaction createTransaction(){
+
+	protected Transaction createTransaction() {
 		Transaction transaction = new Transaction();
 		Offre offre = createOffre();
-		
+
 		Integer id = 1;
 		Integer acheteurId = 1;
 		LocalDate date = LocalDate.of(1993, 04, 26);
-		
+
 		transaction.setId(id);
 		transaction.setAcheteurId(acheteurId);
 		transaction.setDate(date);
 		transaction.setOffre(offre);
-		
+
 		return transaction;
 	}
-	
-	protected Acheteur createAcheteur(){
+
+	protected Acheteur createAcheteur() {
 		Acheteur acheteur = new Acheteur();
 		Utilisateur utilisateur = createUser();
-		
+
 		Integer id = 1;
 		String prenom = "boby";
-		String nom ="bob";
+		String nom = "bob";
 		LocalDate date = LocalDate.of(1700, 03, 26);
-		
+
 		acheteur.setId(id);
 		acheteur.setPrenom(prenom);
 		acheteur.setNom(nom);
 		acheteur.setDateNaissance(date);
 		acheteur.setUsrId(utilisateur.getId());
-		
+
 		return acheteur;
 	}
 

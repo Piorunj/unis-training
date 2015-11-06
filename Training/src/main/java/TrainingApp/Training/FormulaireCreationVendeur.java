@@ -12,9 +12,8 @@ public class FormulaireCreationVendeur {
 	private String password;
 	private String telephone;
 	private String entreprise;
-	
-	
-	public boolean isCorrectlySet(){
-		return (login!=null && password!=null && telephone!=null && entreprise!=null);
+
+	public boolean isCorrectlySet() {
+		return (login != null && password != null && telephone != null && entreprise != null);
 	}
 }

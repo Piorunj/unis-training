@@ -12,20 +12,20 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-public class CustomAuthentificationSuccessHandler implements  AuthenticationSuccessHandler{
+public class CustomAuthentificationSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth)
 			throws IOException, ServletException {
 		Collection<? extends GrantedAuthority> roles = auth.getAuthorities();
-		
-		if(roles.size() == 1 && roles.contains(new SimpleGrantedAuthority("VENDEUR"))){
+
+		if (roles.size() == 1 && roles.contains(new SimpleGrantedAuthority("VENDEUR"))) {
 			res.setStatus(HttpServletResponse.SC_OK);
 			res.sendRedirect("user/vendeur");
-		}else if(roles.size() == 1 && roles.contains(new SimpleGrantedAuthority("ACHETEUR"))){
+		} else if (roles.size() == 1 && roles.contains(new SimpleGrantedAuthority("ACHETEUR"))) {
 			res.setStatus(HttpServletResponse.SC_OK);
 			res.sendRedirect("user/acheteur");
-		}else{
+		} else {
 			throw new RuntimeException("Role Incorrect");
 		}
 	}

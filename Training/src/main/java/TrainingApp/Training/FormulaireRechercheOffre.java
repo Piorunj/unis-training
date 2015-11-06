@@ -16,17 +16,17 @@ public class FormulaireRechercheOffre {
 	@NotNull(message = "Toto null")
 	@NotEmpty(message = "Toto vide")
 	private String produit;
-	
+
 	private Integer qtMin;
-	
+
 	private Integer qtMax;
-	
+
 	private Integer prixMin;
-	
+
 	private Integer prixMax;
-	
-	public boolean isEmpty(){
-		return produit==null && qtMin==null && qtMax==null && prixMin==null && prixMax==null;
+
+	public boolean isEmpty() {
+		return produit == null && qtMin == null && qtMax == null && prixMin == null && prixMax == null;
 	}
 
 }

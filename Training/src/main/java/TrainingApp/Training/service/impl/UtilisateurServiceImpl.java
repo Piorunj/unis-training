@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import trainingapp.training.entite.Acheteur;
 import trainingapp.training.entite.Utilisateur;
 import trainingapp.training.mapper.AcheteurMapper;
 import trainingapp.training.mapper.UtilisateurMapper;
@@ -19,14 +18,14 @@ import trainingapp.training.mapper.VendeurMapper;
 import trainingapp.training.service.UtilisateurService;
 
 @Service
-public class UtilisateurServiceImpl implements UtilisateurService{
-	
+public class UtilisateurServiceImpl implements UtilisateurService {
+
 	@Autowired
 	private UtilisateurMapper utilisateurMapper;
-	
+
 	@Autowired
 	private AcheteurMapper acheteurMapper;
-	
+
 	@Autowired
 	private VendeurMapper vendeurMapper;
 
@@ -40,15 +39,14 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		return utilisateurMapper.getUtilisateurById(id);
 	}
 
-
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		Utilisateur utilisateur = utilisateurMapper.getUtilisateurAcheteurByLogin(login);
-		if(utilisateur == null){
+		if (utilisateur == null) {
 			utilisateur = utilisateurMapper.getUtilisateurVendeurByLogin(login);
-			if(utilisateur == null){
+			if (utilisateur == null) {
 				throw new UsernameNotFoundException("Login inexistant");
-			}else{
+			} else {
 				final GrantedAuthority authority = new SimpleGrantedAuthority("VENDEUR");
 				return new User(utilisateur.getLogin(), utilisateur.getPassword(), Arrays.asList(authority));
 			}
@@ -75,9 +73,9 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		user.setPassword(password);
 		user.setTelephone(telephone);
 		utilisateurMapper.createUtilisateur(user);
-		
+
 		acheteurMapper.createAcheteur(user.getId(), prenom, nom, date);
-		
+
 	}
 
 	@Override
@@ -86,11 +84,10 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setTelephone(telephone);
-		
+
 		utilisateurMapper.createUtilisateur(user);
 		vendeurMapper.createVendeur(user.getId(), entreprise);
-		
-	}
 
+	}
 
 }

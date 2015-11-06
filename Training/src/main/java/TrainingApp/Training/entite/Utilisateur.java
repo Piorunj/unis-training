@@ -9,11 +9,11 @@ import lombok.ToString;
 @ToString
 public class Utilisateur {
 	private Integer id;
-	
+
 	private String login;
-	
+
 	private String password;
-	
+
 	private String telephone;
-	
+
 }

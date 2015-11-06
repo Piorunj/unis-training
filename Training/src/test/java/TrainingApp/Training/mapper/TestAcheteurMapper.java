@@ -15,8 +15,8 @@ public class TestAcheteurMapper extends AbstractTrainingTest {
 	public void testGetAcheteurByUtilisateurLogin() throws Exception {
 		Acheteur acheteurRef = createAcheteur();
 		Acheteur acheteur = acheteurMapper.getAcheteurByUtilisateurLogin("user1");
-		
+
 		Assertions.assertThat(acheteur.getId()).isNotNull().isPositive().isEqualTo(acheteurRef.getId());
-		
+
 	}
 }

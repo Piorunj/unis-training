@@ -29,52 +29,50 @@ import trainingapp.training.service.UtilisateurService;
 import trainingapp.training.service.VendeurService;
 
 @Controller
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 public class UserController {
-
 
 	@Autowired
 	private UtilisateurService utilisateurService;
 
 	@Autowired
 	private TransactionService transactionService;
-	
+
 	@Autowired
 	private AcheteurService acheteurService;
-	
+
 	@Autowired
 	private VendeurService vendeurService;
-	
+
 	@Autowired
 	private OffreService offreService;
 
 	private ModelAndView mav;
 
 	@PreAuthorize("hasRole('ACHETEUR')")
-	@RequestMapping(value="/acheteur", method = RequestMethod.GET)
+	@RequestMapping(value = "/acheteur", method = RequestMethod.GET)
 	public ModelAndView submitForm() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Utilisateur utilisateur = utilisateurService.getUtilisateurAcheteurByLogin(auth.getName());
 
 		Integer acheteurId = acheteurService.getAcheteurByUtilisateurLogin(utilisateur.getLogin()).getId();
 
-		
 		mav = new ModelAndView();
 
 		List<Transaction> transactionList;
-		transactionList = transactionService.getAllTransactionByAcheteurId(acheteurId); 
+		transactionList = transactionService.getAllTransactionByAcheteurId(acheteurId);
 		mav.addObject("transactionList", transactionList);
 		mav.addObject("usrName", utilisateur.getLogin());
 		mav.setViewName("acheteur");
 
 		return mav;
 	}
-	
+
 	@PreAuthorize("hasRole('ACHETEUR')")
-	@RequestMapping(value="/acheteur/desc", method = RequestMethod.GET)
+	@RequestMapping(value = "/acheteur/desc", method = RequestMethod.GET)
 	public ModelAndView descriptionAcheteur() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Utilisateur utilisateur = utilisateurService.getUtilisateurAcheteurByLogin(auth.getName());	
+		Utilisateur utilisateur = utilisateurService.getUtilisateurAcheteurByLogin(auth.getName());
 		Acheteur acheteur = acheteurService.getAcheteurByUtilisateurLogin(utilisateur.getLogin());
 		mav = new ModelAndView();
 		mav.addObject("user", utilisateur);
@@ -83,12 +81,12 @@ public class UserController {
 
 		return mav;
 	}
-	
+
 	@PreAuthorize("hasRole('VENDEUR')")
-	@RequestMapping(value="/vendeur/desc", method = RequestMethod.GET)
+	@RequestMapping(value = "/vendeur/desc", method = RequestMethod.GET)
 	public ModelAndView descriptionVendeur() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Utilisateur utilisateur = utilisateurService.getUtilisateurVendeurByLogin(auth.getName());	
+		Utilisateur utilisateur = utilisateurService.getUtilisateurVendeurByLogin(auth.getName());
 		Vendeur vendeur = vendeurService.getVendeurByUtilisateurLogin(utilisateur.getLogin());
 		mav = new ModelAndView();
 		mav.addObject("user", utilisateur);
@@ -97,83 +95,87 @@ public class UserController {
 
 		return mav;
 	}
-	
+
 	@PreAuthorize("hasRole('VENDEUR')")
-	@RequestMapping(value="/vendeur", method = RequestMethod.GET)
-	public ModelAndView submitFormVendeur(){
+	@RequestMapping(value = "/vendeur", method = RequestMethod.GET)
+	public ModelAndView submitFormVendeur() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Utilisateur utilisateur = utilisateurService.getUtilisateurVendeurByLogin(auth.getName());
-		
+
 		Integer vendeurId = vendeurService.getVendeurByUtilisateurLogin(utilisateur.getLogin()).getId();
 		mav = new ModelAndView();
-		
+
 		List<Transaction> transactionList;
-		transactionList = transactionService.getAllTransactionByVendeurId(vendeurId); 
+		transactionList = transactionService.getAllTransactionByVendeurId(vendeurId);
 		mav.addObject("transactionList", transactionList);
 		mav.addObject("usrName", utilisateur.getLogin());
 		mav.setViewName("vendeur");
-		
+
 		List<Offre> offreList;
 		offreList = offreService.getOffreByVendeurId(vendeurId);
 		mav.addObject("offreList", offreList);
 		return mav;
 	}
-	
+
 	@PreAuthorize("hasRole('VENDEUR')")
-	@RequestMapping(value="/vendeur/delete{offreId}", method = RequestMethod.GET)
-	public ModelAndView suppressionOffreVendeur(@PathVariable Integer offreId){
+	@RequestMapping(value = "/vendeur/delete{offreId}", method = RequestMethod.GET)
+	public ModelAndView suppressionOffreVendeur(@PathVariable Integer offreId) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Utilisateur utilisateur = utilisateurService.getUtilisateurVendeurByLogin(auth.getName());
-		
+
 		Integer vendeurId = vendeurService.getVendeurByUtilisateurLogin(utilisateur.getLogin()).getId();
 		mav = new ModelAndView();
-		
+
 		offreService.deleteOffreByOffreId(offreId);
-		
+
 		List<Transaction> transactionList;
-		transactionList = transactionService.getAllTransactionByVendeurId(vendeurId); 
+		transactionList = transactionService.getAllTransactionByVendeurId(vendeurId);
 		mav.addObject("transactionList", transactionList);
 		mav.addObject("usrName", utilisateur.getLogin());
 		mav.setViewName("vendeur");
-		
+
 		List<Offre> offreList;
 		offreList = offreService.getOffreByVendeurId(vendeurId);
 		mav.addObject("offreList", offreList);
 		return mav;
 	}
-	
+
 	// premier chargement de la page de creation de compte
-	@RequestMapping(value="create", method=RequestMethod.GET)
-	public ModelAndView firstLoadNewUser(){
+	@RequestMapping(value = "create", method = RequestMethod.GET)
+	public ModelAndView firstLoadNewUser() {
 		mav = new ModelAndView("newUser");
 		mav.addObject("formulaireCreationAcheteur", new FormulaireCreationAcheteur());
 		mav.addObject("formulaireCreationVendeur", new FormulaireCreationVendeur());
 		return mav;
 	}
-	
-	@RequestMapping(value="/create/acheteur", method= RequestMethod.POST)
-	public ModelAndView creationUtilisateurAcheteur(@ModelAttribute("formulaireCreationAcheteur") final FormulaireCreationAcheteur formulaireCreationAcheteur){
+
+	@RequestMapping(value = "/create/acheteur", method = RequestMethod.POST)
+	public ModelAndView creationUtilisateurAcheteur(
+			@ModelAttribute("formulaireCreationAcheteur") final FormulaireCreationAcheteur formulaireCreationAcheteur) {
 		mav = new ModelAndView();
-		if (formulaireCreationAcheteur == null || !formulaireCreationAcheteur.isCorrectlySet()){
+		if (formulaireCreationAcheteur == null || !formulaireCreationAcheteur.isCorrectlySet()) {
 			mav.setViewName("error");
 			return mav;
 		}
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		LocalDate date = LocalDate.parse(formulaireCreationAcheteur.getDateNaissance(), formatter);
-		utilisateurService.createAcheteur(formulaireCreationAcheteur.getLogin(), formulaireCreationAcheteur.getPassword(), formulaireCreationAcheteur.getTelephone(), formulaireCreationAcheteur.getPrenom(), formulaireCreationAcheteur.getNom(), date);		
+		utilisateurService.createAcheteur(formulaireCreationAcheteur.getLogin(),
+				formulaireCreationAcheteur.getPassword(), formulaireCreationAcheteur.getTelephone(),
+				formulaireCreationAcheteur.getPrenom(), formulaireCreationAcheteur.getNom(), date);
 		mav.setViewName("home");
 		return mav;
 	}
 
-	
-	@RequestMapping(value="/create/vendeur", method= RequestMethod.POST)
-	public ModelAndView creationUtilisateurVendeur(@ModelAttribute("formulaireCreationVendeur") final FormulaireCreationVendeur formulaireCreationVendeur){
+	@RequestMapping(value = "/create/vendeur", method = RequestMethod.POST)
+	public ModelAndView creationUtilisateurVendeur(
+			@ModelAttribute("formulaireCreationVendeur") final FormulaireCreationVendeur formulaireCreationVendeur) {
 		mav = new ModelAndView();
-		if (formulaireCreationVendeur == null || !formulaireCreationVendeur.isCorrectlySet()){
+		if (formulaireCreationVendeur == null || !formulaireCreationVendeur.isCorrectlySet()) {
 			mav.setViewName("error");
 			return mav;
 		}
-		utilisateurService.createVendeur(formulaireCreationVendeur.getLogin(), formulaireCreationVendeur.getPassword(), formulaireCreationVendeur.getTelephone(), formulaireCreationVendeur.getEntreprise());		
+		utilisateurService.createVendeur(formulaireCreationVendeur.getLogin(), formulaireCreationVendeur.getPassword(),
+				formulaireCreationVendeur.getTelephone(), formulaireCreationVendeur.getEntreprise());
 		mav.setViewName("home");
 		return mav;
 	}

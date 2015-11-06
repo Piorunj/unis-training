@@ -8,11 +8,11 @@ import trainingapp.training.mapper.AcheteurMapper;
 import trainingapp.training.service.AcheteurService;
 
 @Service
-public class AcheteurServiceImpl implements AcheteurService{
+public class AcheteurServiceImpl implements AcheteurService {
 
 	@Autowired
 	private AcheteurMapper acheteurMapper;
-	
+
 	@Override
 	public Acheteur getAcheteurByUtilisateurLogin(String login) {
 		return acheteurMapper.getAcheteurByUtilisateurLogin(login);

@@ -15,7 +15,7 @@ public class OffreServiceImpl implements OffreService {
 
 	@Autowired
 	private OffreMapper offreMapper;
-	
+
 	@Override
 	public List<Offre> getOffreParCritere(String produit, Integer quantiteMin, Integer quantiteMax, Integer prixMin,
 			Integer prixMax) {
@@ -33,7 +33,8 @@ public class OffreServiceImpl implements OffreService {
 	}
 
 	@Override
-	public void ajouterOffre(Integer produitId, Integer vendeurId, Integer quantite, String unite, Integer prixUnite, LocalDate dateCreation) {
+	public void ajouterOffre(Integer produitId, Integer vendeurId, Integer quantite, String unite, Integer prixUnite,
+			LocalDate dateCreation) {
 		offreMapper.ajouterOffre(produitId, vendeurId, quantite, unite, prixUnite, dateCreation);
 	}
 

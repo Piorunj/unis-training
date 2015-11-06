@@ -10,8 +10,8 @@ import trainingapp.training.mapper.TransactionMapper;
 import trainingapp.training.service.TransactionService;
 
 @Service
-public class TransactionServiceImpl implements TransactionService{
-	
+public class TransactionServiceImpl implements TransactionService {
+
 	@Autowired
 	private TransactionMapper transactionMapper;
 
@@ -34,5 +34,5 @@ public class TransactionServiceImpl implements TransactionService{
 	public List<Transaction> getAllTransactionByVendeurId(Integer vendeurId) {
 		return transactionMapper.getAllTransactionByVendeurId(vendeurId);
 	}
-	
+
 }

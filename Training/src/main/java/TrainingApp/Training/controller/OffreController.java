@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import scala.annotation.meta.getter;
 import trainingapp.training.FormulaireCreationOffre;
 import trainingapp.training.FormulaireRechercheOffre;
 import trainingapp.training.entite.Offre;
@@ -30,7 +29,7 @@ import trainingapp.training.service.UtilisateurService;
 import trainingapp.training.service.VendeurService;
 
 @Controller
-@RequestMapping(value="/offre")
+@RequestMapping(value = "/offre")
 public class OffreController {
 
 	@Autowired
@@ -44,7 +43,7 @@ public class OffreController {
 
 	@Autowired
 	private UtilisateurService utilisateurService;
-	
+
 	@Autowired
 	private AcheteurService acheteurService;
 
@@ -55,32 +54,36 @@ public class OffreController {
 
 	@PreAuthorize("hasRole('ACHETEUR')")
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView resultatRecherche(@ModelAttribute("formulaireRechercheOffre") final FormulaireRechercheOffre formulaire){
+	public ModelAndView resultatRecherche(
+			@ModelAttribute("formulaireRechercheOffre") final FormulaireRechercheOffre formulaire) {
 		mav = new ModelAndView("offre");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Utilisateur utilisateur = utilisateurService.getUtilisateurAcheteurByLogin(auth.getName());
 		mav.addObject("usrName", utilisateur.getLogin());
-		if(formulaire != null && !formulaire.isEmpty()){
-			List<Offre> offres = offreService.getOffreParCritere(formulaire.getProduit(), formulaire.getQtMin(), formulaire.getQtMax(), formulaire.getPrixMin(),formulaire.getPrixMax());
+		if (formulaire != null && !formulaire.isEmpty()) {
+			List<Offre> offres = offreService.getOffreParCritere(formulaire.getProduit(), formulaire.getQtMin(),
+					formulaire.getQtMax(), formulaire.getPrixMin(), formulaire.getPrixMax());
 			mav.addObject("offres", offres);
 		}
 		mav.addObject("formulaireRechercheOffre", formulaire);
 		return mav;
 	}
 
-
 	@PreAuthorize("hasRole('ACHETEUR')")
-	@RequestMapping(method = RequestMethod.GET, value="{idOffre}")
-	public ModelAndView ajoutTransaction(@ModelAttribute("formulaireRechercheOffre") FormulaireRechercheOffre formulaire, @PathVariable Integer idOffre){
+	@RequestMapping(method = RequestMethod.GET, value = "{idOffre}")
+	public ModelAndView ajoutTransaction(
+			@ModelAttribute("formulaireRechercheOffre") FormulaireRechercheOffre formulaire,
+			@PathVariable Integer idOffre) {
 		mav = new ModelAndView("offre");
-		if(formulaire != null && !formulaire.isEmpty()){
-			List<Offre> offres = offreService.getOffreParCritere(formulaire.getProduit(), formulaire.getQtMin(), formulaire.getQtMax(), formulaire.getPrixMin(),formulaire.getPrixMax());
+		if (formulaire != null && !formulaire.isEmpty()) {
+			List<Offre> offres = offreService.getOffreParCritere(formulaire.getProduit(), formulaire.getQtMin(),
+					formulaire.getQtMax(), formulaire.getPrixMin(), formulaire.getPrixMax());
 			mav.addObject("offres", offres);
 		}
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
+
 		Utilisateur utilisateur = utilisateurService.getUtilisateurAcheteurByLogin(auth.getName());
-		
+
 		Integer acheteurId = acheteurService.getAcheteurByUtilisateurLogin(utilisateur.getLogin()).getId();
 
 		transactionService.addTransaction(idOffre, acheteurId);
@@ -90,10 +93,12 @@ public class OffreController {
 	}
 
 	@PreAuthorize("hasRole('VENDEUR')")
-	@RequestMapping(method = RequestMethod.POST, value="/new")
-	public ModelAndView creationOffre(@Validated @ModelAttribute("formulaireCreationOffre") final FormulaireCreationOffre formulaire, final BindingResult br){
+	@RequestMapping(method = RequestMethod.POST, value = "/new")
+	public ModelAndView creationOffre(
+			@Validated @ModelAttribute("formulaireCreationOffre") final FormulaireCreationOffre formulaire,
+			final BindingResult br) {
 		mav = new ModelAndView("newOffre");
-		if(formulaire !=null && formulaire.correctlySet() && !br.hasErrors()){
+		if (formulaire != null && formulaire.correctlySet() && !br.hasErrors()) {
 
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			Utilisateur utilisateur = utilisateurService.getUtilisateurVendeurByLogin(auth.getName());
@@ -101,14 +106,15 @@ public class OffreController {
 
 			Produit produit = produitService.getProduitByName(formulaire.getProduit());
 			Integer produitId;
-			if(produit == null){
+			if (produit == null) {
 				produitService.ajouterProduit(formulaire.getProduit());
 				produit = produitService.getProduitByName(formulaire.getProduit());
 			}
 			produitId = produit.getId();
-			LocalDate dateOffre = LocalDate.now();	
+			LocalDate dateOffre = LocalDate.now();
 			Integer vendeurId = vendeurService.getVendeurByUtilisateurLogin(utilisateur.getLogin()).getId();
-			offreService.ajouterOffre(produitId, vendeurId, formulaire.getQuantite(), formulaire.getUnite(), formulaire.getPrixUnite(), dateOffre);
+			offreService.ajouterOffre(produitId, vendeurId, formulaire.getQuantite(), formulaire.getUnite(),
+					formulaire.getPrixUnite(), dateOffre);
 			Offre recap = new Offre();
 			recap.setProduit(produit);
 			recap.setPrixUnite(formulaire.getPrixUnite());
@@ -120,10 +126,11 @@ public class OffreController {
 		mav.addObject("fomulaireCreationOffre", new FormulaireCreationOffre());
 		return mav;
 	}
-	
+
 	@PreAuthorize("hasRole('VENDEUR')")
-	@RequestMapping(method = RequestMethod.GET, value="/new")
-	public ModelAndView firstLoadNewOffre(@ModelAttribute("formulaireCreationOffre") final FormulaireCreationOffre formulaire){
+	@RequestMapping(method = RequestMethod.GET, value = "/new")
+	public ModelAndView firstLoadNewOffre(
+			@ModelAttribute("formulaireCreationOffre") final FormulaireCreationOffre formulaire) {
 		mav = new ModelAndView("newOffre");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Utilisateur utilisateur = utilisateurService.getUtilisateurVendeurByLogin(auth.getName());

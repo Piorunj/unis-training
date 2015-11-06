@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import trainingapp.training.AbstractTrainingTest;
 import trainingapp.training.entite.Utilisateur;
 
-public class TestUtilisateurMapper extends AbstractTrainingTest{
+public class TestUtilisateurMapper extends AbstractTrainingTest {
 
 	@Autowired
 	private UtilisateurMapper utilisateurMapper;
 
 	@Test
-	public void testGetUtilisateurByIdSuccess() throws Exception{
+	public void testGetUtilisateurByIdSuccess() throws Exception {
 		Integer id = 1;
 		String login = "user1";
 		String password = "pass";
@@ -28,7 +28,7 @@ public class TestUtilisateurMapper extends AbstractTrainingTest{
 	}
 
 	@Test
-	public void testGetUtilisateurByIdFail() throws Exception{
+	public void testGetUtilisateurByIdFail() throws Exception {
 		Assertions.assertThat(utilisateurMapper.getUtilisateurById(null)).isNull();
 		Assertions.assertThat(utilisateurMapper.getUtilisateurById(Integer.MAX_VALUE)).isNull();
 	}

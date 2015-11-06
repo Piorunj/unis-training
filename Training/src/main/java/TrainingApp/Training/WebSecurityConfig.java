@@ -14,8 +14,8 @@ import trainingapp.training.service.UtilisateurService;
 
 @Configuration
 @EnableWebMvcSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Lazy
 	@Autowired
@@ -25,25 +25,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 
-		http
-		.authorizeRequests()
-		.antMatchers("/", "/home", "/user/create/acheteur", "/user/create", "/user/create/vendeur").permitAll()
-		.anyRequest().authenticated()
-		.and()
-		.formLogin().successHandler(new CustomAuthentificationSuccessHandler())
-//		.formLogin().defaultSuccessUrl("/user", true)
-//		.loginPage("/login")
-		.permitAll()
-		.and()
-		.logout().logoutSuccessUrl("/")
-		.permitAll();
-		
+		http.authorizeRequests()
+				.antMatchers("/", "/home", "/user/create/acheteur", "/user/create", "/user/create/vendeur").permitAll()
+				.anyRequest().authenticated().and().formLogin()
+				.successHandler(new CustomAuthentificationSuccessHandler())
+				// .formLogin().defaultSuccessUrl("/user", true)
+				// .loginPage("/login")
+				.permitAll().and().logout().logoutSuccessUrl("/").permitAll();
+
 		http.exceptionHandling().accessDeniedPage("/error/accessDenied");
 
 	}
 
 	@Override
-	public void configure (WebSecurity web) throws Exception {
+	public void configure(WebSecurity web) throws Exception {
 		super.configure(web);
 		web.ignoring().antMatchers("/ressources/**");
 		web.ignoring().antMatchers("/assets/**");

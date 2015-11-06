@@ -11,5 +11,5 @@ public class Transaction {
 	private Integer acheteurId;
 	private Offre offre;
 	private LocalDate date;
-	
+
 }

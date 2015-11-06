@@ -13,12 +13,12 @@ public class FormulaireCreationOffre {
 	private Integer quantite;
 	private String unite;
 	private Integer prixUnite;
-	
-	public boolean isEmpty(){
+
+	public boolean isEmpty() {
 		return (produit == null && quantite == null && unite == null && prixUnite == null);
 	}
-	
-	public boolean correctlySet(){
-		return (produit!=null && quantite!=null && unite!=null && prixUnite!=null);
+
+	public boolean correctlySet() {
+		return (produit != null && quantite != null && unite != null && prixUnite != null);
 	}
 }
